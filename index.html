@@ -1,0 +1,2000 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f382f">
+<title>دفتر جامع کارگاه خیاطی</title>
+<style>
+:root {
+  --bg: #f6f3eb;
+  --card: #ffffff;
+  --text: #1c2b26;
+  --muted: #6b7a73;
+  --primary: #0f382f;
+  --primary-light: #1c5446;
+  --accent: #c6a15b;
+  --border: #e2ded3;
+  --danger: #a13c42;
+  --danger-bg: #fbecec;
+  --success: #2e7d32;
+  --success-bg: #e8f5e9;
+  --wa-color: #25d366;
+  --wa-bg: #e8f8f0;
+  --shadow: 0 4px 16px rgba(15, 56, 47, 0.06);
+  --radius: 14px;
+}
+
+body.dark {
+  --bg: #121514;
+  --card: #1e2422;
+  --text: #f0f4f2;
+  --muted: #9bb0a8;
+  --primary: #1c5446;
+  --primary-light: #276b5a;
+  --accent: #d4b67d;
+  --border: #2d3734;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --success-bg: #1b3b20;
+  --danger-bg: #3d1c1c;
+  --wa-bg: #10301d;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+  padding-bottom: 85px;
+  transition: background 0.3s, color 0.3s;
+}
+svg { display: block; }
+.icon { width: 1.2em; height: 1.2em; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Header */
+header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  padding: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--accent);
+}
+.header-title { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; }
+.theme-toggle { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); color: #fff; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(4px); }
+
+/* Main layout */
+main { padding: 16px; max-width: 900px; margin: 0 auto; }
+.page { display: none; animation: fadeIn 0.3s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Cards */
+.card { background: var(--card); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow); border: 1px solid var(--border); }
+.card-title { font-weight: 700; font-size: 15px; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
+.card-title > span { display: flex; align-items: center; gap: 8px; }
+
+/* Stats */
+.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+.stat-box { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 12px; text-align: center; }
+.stat-label { font-size: 11px; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+.stat-val { font-size: 20px; font-weight: 800; color: var(--primary); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 16px; border-radius: 10px; border: none;
+  background: var(--primary); color: #fff; font-family: inherit;
+  font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s;
+  box-shadow: 0 2px 6px rgba(15, 56, 47, 0.2);
+}
+.btn:active { transform: scale(0.97); }
+.btn-sm { padding: 6px 12px; font-size: 12px; border-radius: 8px; }
+.btn-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); box-shadow: none; }
+.btn-danger { background: var(--danger-bg); color: var(--danger); border: none; box-shadow: none; }
+.btn-gold { background: var(--accent); color: #1d2b24; }
+.btn-block { width: 100%; }
+.btn-icon { padding: 8px; border-radius: 8px; background: var(--bg); border: 1px solid var(--border); color: var(--text); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; }
+.btn-icon.call { color: var(--success); background: var(--success-bg); border-color: var(--success-bg); }
+.btn-icon.wa { color: var(--wa-color); background: var(--wa-bg); border-color: var(--wa-bg); }
+
+/* Quick Access Grid */
+.quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.quick-item {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+  padding: 14px 8px; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  cursor: pointer; transition: 0.2s; text-align: center; font-family: inherit;
+}
+.quick-item:active { background: var(--border); }
+.quick-item .q-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; }
+.quick-item .q-icon .icon { width: 22px; height: 22px; }
+.quick-item span { font-size: 12px; font-weight: 700; color: var(--text); }
+
+/* List View (Mobile Friendly) */
+.list-view { display: flex; flex-direction: column; gap: 10px; }
+.list-item {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px; display: flex; flex-direction: column; gap: 8px;
+}
+.list-item-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed var(--border); padding-bottom: 8px; }
+.list-item-title { font-weight: bold; font-size: 14px; color: var(--primary); }
+.list-item-date { font-size: 12px; color: var(--muted); }
+.list-item-body { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+.list-item-actions { display: flex; gap: 6px; justify-content: flex-end; margin-top: 4px; }
+
+/* Forms */
+.form-group { margin-bottom: 12px; }
+.form-group label { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+input, select, textarea {
+  width: 100%; padding: 10px 12px; border: 1.5px solid var(--border);
+  border-radius: 8px; background: var(--bg); color: var(--text);
+  font-family: inherit; font-size: 13px; transition: 0.2s;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+/* Bottom Nav (Modern) */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(255, 255, 255, 0.85); 
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  display: flex; justify-content: space-around;
+  border-top: 1px solid var(--border); box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+  z-index: 100; padding-bottom: env(safe-area-inset-bottom);
+}
+body.dark .bottom-nav { background: rgba(30, 36, 34, 0.85); }
+.bottom-nav button {
+  flex: 1; background: none; border: none; padding: 12px 0 10px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  color: var(--muted); font-family: inherit; font-size: 10.5px; cursor: pointer; transition: 0.2s;
+}
+.bottom-nav button.active { color: var(--primary); font-weight: 800; }
+.bottom-nav button .icon { width: 22px; height: 22px; transition: transform 0.2s; }
+.bottom-nav button.active .icon { transform: translateY(-2px) scale(1.1); }
+
+/* Modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 16px; }
+.modal-overlay.active { display: flex; }
+.modal-content { background: var(--card); width: 100%; max-width: 500px; border-radius: 16px; padding: 20px; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.2); animation: modalIn 0.3s; }
+@keyframes modalIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.modal-title { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
+.modal-close { background: none; border: none; color: var(--muted); cursor: pointer; }
+
+/* Alerts & Empty */
+.empty { text-align: center; padding: 24px; color: var(--muted); font-size: 13px; }
+.notice { background: #fff3d9; border: 1px solid #e9d39d; border-radius: 10px; padding: 12px; font-size: 12px; color: #5c4200; margin-bottom: 16px; line-height: 1.8; }
+body.dark .notice { background: #332a14; border-color: #5c4b20; color: #e2c780; }
+
+/* Menu List for Settings/Backup */
+.menu-list { display: flex; flex-direction: column; gap: 8px; }
+.menu-item { 
+  display: flex; align-items: center; gap: 12px; padding: 14px; 
+  background: var(--bg); border: 1px solid var(--border); border-radius: 10px; 
+  cursor: pointer; color: var(--text); font-weight: 600; transition: 0.2s; 
+  text-align: right; font-family: inherit; width: 100%; box-sizing: border-box;
+}
+.menu-item:active { background: var(--border); }
+.menu-item .icon { color: var(--primary); flex-shrink: 0; }
+
+/* Machine Guide */
+details { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+summary { padding: 14px 16px; font-weight: 700; cursor: pointer; color: var(--primary); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+summary::-webkit-details-marker { display: none; }
+details[open] summary { border-bottom: 1px solid var(--border); }
+.details-content { padding: 16px; font-size: 13px; line-height: 1.9; }
+.details-content h4 { color: var(--primary); margin-top: 10px; margin-bottom: 5px; }
+.details-content ul, .details-content ol { padding-right: 20px; margin-bottom: 10px; }
+.details-content li { margin-bottom: 6px; }
+
+/* EXCEL STYLE REPORT TABLE */
+.report-table-wrapper { overflow-x: auto; margin-top: 10px; border-radius: 8px; border: 1px solid var(--border); }
+.report-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 600px; text-align: center; }
+.report-table th { background: var(--bg); color: var(--primary); padding: 10px 6px; font-weight: bold; border-bottom: 2px solid var(--border); border-left: 1px solid var(--border); white-space: nowrap; }
+.report-table td { padding: 10px 6px; border-bottom: 1px solid var(--border); border-left: 1px solid var(--border); }
+.report-table th:last-child, .report-table td:last-child { border-left: none; }
+.report-table tfoot td { background: var(--bg); font-weight: bold; color: var(--primary); border-top: 2px solid var(--border); border-bottom: none; }
+.report-table tbody tr:nth-child(even) { background: rgba(0,0,0,0.02); }
+body.dark .report-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+
+/* Custom Shamsi Date Picker */
+.date-picker-group { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 6px; }
+.date-picker-group select { text-align: center; padding: 10px 4px; }
+
+/* NEW BEAUTIFUL CALCULATOR */
+.calc-display { 
+  background: #1a1a1a; color: #fff; font-size: 36px; text-align: left; 
+  padding: 20px; border-radius: 12px; margin-bottom: 16px; 
+  direction: ltr; overflow-x: auto; font-weight: bold; box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
+}
+.calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.calc-grid button { 
+  padding: 20px 10px; font-size: 22px; font-weight: bold; border-radius: 12px; 
+  border: none; background: var(--bg); color: var(--text); box-shadow: var(--shadow); 
+  cursor: pointer; transition: 0.1s; font-family: inherit;
+}
+.calc-grid button:active { transform: scale(0.95); filter: brightness(0.9); }
+.calc-grid button.op { background: var(--accent); color: #fff; }
+.calc-grid button.eq { background: var(--primary); color: #fff; grid-row: span 2; }
+.calc-grid button.clear { background: var(--danger-bg); color: var(--danger); }
+
+@media print {
+  body { background: #fff; color: #000; padding: 0; }
+  header, .bottom-nav, .no-print, .modal-overlay { display: none !important; }
+  main { padding: 0; max-width: 100%; }
+  .page { display: none !important; }
+  .page.active { display: block !important; }
+  .card { box-shadow: none; border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; }
+  .report-header { display: block !important; text-align: center; margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 10px; }
+  .stats-grid { display: flex; justify-content: space-between; }
+  .stat-box { border: 1px solid #ccc; width: 23%; text-align: center; }
+  .report-table-wrapper { overflow: visible; border: 1px solid #000; }
+  .report-table th, .report-table td { border: 1px solid #000; padding: 6px; font-size: 11px; }
+  .report-table th { background: #eee; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<!-- SVG Icons -->
+<svg width="0" height="0" style="display:none;">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></symbol>
+  <symbol id="i-machine" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+  <symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+</svg>
+
+<header>
+  <div class="header-title">
+    <svg class="icon" style="width:24px;height:24px;"><use href="#i-scissors"/></svg>
+    <span id="brandTitle">دفتر جامع کارگاه</span>
+  </div>
+  <button class="theme-toggle" onclick="toggleTheme()">
+    <svg class="icon" id="themeIcon"><use href="#i-moon"/></svg>
+  </button>
+</header>
+
+<main>
+  <!-- ================= داشبورد ================= -->
+  <section class="page active" id="view-home">
+    <div class="notice">
+      <b>راهنما:</b> تمام اطلاعات به صورت آفلاین در مرورگر شما ذخیره می‌شود. از بخش دسترسی سریع پایین می‌توانید به تمام امکانات بروید.
+    </div>
+    
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-label">کل تولیدات (تعداد)</div>
+        <div class="stat-val" id="sQty">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">کل تولیدات (مبلغ)</div>
+        <div class="stat-val" id="sProduction">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">قرض باقی‌مانده</div>
+        <div class="stat-val" id="sLoans" style="color:var(--danger)">0</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">موجودی دفتر</div>
+        <div class="stat-val" id="sOwner" style="color:var(--success)">0</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span><svg class="icon"><use href="#i-home"/></svg> دسترسی سریع</span></div>
+      <div class="quick-grid">
+        <button class="quick-item" onclick="showView('production')">
+          <div class="q-icon" style="background:#0f382f"><svg class="icon"><use href="#i-pen"/></svg></div>
+          <span>ثبت تولید</span>
+        </button>
+        <button class="quick-item" onclick="showView('students')">
+          <div class="q-icon" style="background:#1c5446"><svg class="icon"><use href="#i-users"/></svg></div>
+          <span>شاگردان</span>
+        </button>
+        <button class="quick-item" onclick="showView('loans')">
+          <div class="q-icon" style="background:#a13c42"><svg class="icon"><use href="#i-wallet"/></svg></div>
+          <span>قرض شاگردان</span>
+        </button>
+        <button class="quick-item" onclick="showView('debts')">
+          <div class="q-icon" style="background:#c6a15b"><svg class="icon"><use href="#i-wallet"/></svg></div>
+          <span>قرض شخصی</span>
+        </button>
+        <button class="quick-item" onclick="showView('office')">
+          <div class="q-icon" style="background:#2e7d32"><svg class="icon"><use href="#i-briefcase"/></svg></div>
+          <span>حساب دفتر</span>
+        </button>
+        <button class="quick-item" onclick="showView('samples')">
+          <div class="q-icon" style="background:#5a7d9a"><svg class="icon"><use href="#i-scissors"/></svg></div>
+          <span>سمپل/خرید</span>
+        </button>
+        <button class="quick-item" onclick="showView('calc')">
+          <div class="q-icon" style="background:#d4b67d"><svg class="icon"><use href="#i-calc"/></svg></div>
+          <span>ماشین‌حساب</span>
+        </button>
+        <button class="quick-item" onclick="showView('machine')">
+          <div class="q-icon" style="background:#333"><svg class="icon"><use href="#i-machine"/></svg></div>
+          <span>راهنمای چرخ</span>
+        </button>
+        <button class="quick-item" onclick="showView('settings')">
+          <div class="q-icon" style="background:#6b7a73"><svg class="icon"><use href="#i-settings"/></svg></div>
+          <span>تنظیمات</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span><svg class="icon"><use href="#i-clock"/></svg> آخرین فعالیت‌ها</span></div>
+      <div id="recentProduction" class="list-view"></div>
+    </div>
+  </section>
+
+  <!-- ================= تولید ================= -->
+  <section class="page" id="view-production">
+    <div class="card">
+      <div class="card-title">
+        <span><svg class="icon"><use href="#i-pen"/></svg> دفتر تولید</span>
+        <button class="btn btn-sm" onclick="openModal('modal-production')"><svg class="icon"><use href="#i-plus"/></svg> ثبت جدید</button>
+      </div>
+      <div id="productionTable" class="list-view"></div>
+    </div>
+  </section>
+
+  <!-- ================= شاگردان ================= -->
+  <section class="page" id="view-students">
+    <div class="card">
+      <div class="card-title">
+        <span><svg class="icon"><use href="#i-users"/></svg> لیست شاگردان</span>
+        <button class="btn btn-sm" onclick="openModal('modal-student')"><svg class="icon"><use href="#i-plus"/></svg> شاگرد جدید</button>
+      </div>
+      <div id="studentTable" class="list-view"></div>
+    </div>
+  </section>
+
+  <!-- ================= قرض شاگردان ================= -->
+  <section class="page" id="view-loans">
+    <div class="card">
+      <div class="card-title">
+        <span><svg class="icon"><use href="#i-wallet"/></svg> تراکنش‌های شاگردان</span>
+        <button class="btn btn-sm" onclick="openModal('modal-loan')"><svg class="icon"><use href="#i-plus"/></svg> ثبت تراکنش</button>
+      </div>
+      <div id="loanTable" class="list-view"></div>
+    </div>
+  </section>
+
+  <!-- ================= قرض‌های شخصی ================= -->
+  <section class="page" id="view-debts">
+    <div class="card">
+      <div class="card-title">
+        <span><svg class="icon"><use href="#i-wallet"/></svg> قرض‌های شخصی</span>
+        <button class="btn btn-sm" onclick="openModal('modal-debt')"><svg class="icon"><use href="#i-plus"/></svg> ثبت قرض</button>
+      </div>
+      <div id="debtTable" class="list-view"></div>
+    </div>
+  </section>
+
+  <!-- ================= حساب دفتر ================= -->
+  <section class="page" id="view-office">
+    <div class="card">
+      <div class="card-title">
+        <span><svg class="icon"><use href="#i-briefcase"/></svg> حساب و کتاب با دفتر</span>
+        <button class="btn btn-sm" onclick="openModal('modal-office')"><svg class="icon"><use href="#i-plus"/></svg> ثبت تراکنش</button>
+      </div>
+      <div id="officeTable" class="list-view"></div>
+    </div>
+  </section>
+
+  <!-- ================= سمپل و خرید ================= -->
+  <section class="page" id="view-samples">
+    <div class="card">
+      <div class="card-title">
+        <span><svg class="icon"><use href="#i-scissors"/></svg> سمپل‌ها و خریدها</span>
+        <button class="btn btn-sm" onclick="openModal('modal-sample')"><svg class="icon"><use href="#i-plus"/></svg> ثبت جدید</button>
+      </div>
+      <div id="sampleTable" class="list-view"></div>
+    </div>
+  </section>
+
+  <!-- ================= گزارش (شبیه اکسل) ================= -->
+  <section class="page" id="view-report">
+    <div class="card no-print">
+      <div class="card-title"><span><svg class="icon"><use href="#i-file"/></svg> تهیه گزارش</span></div>
+      <div class="form-row-3">
+        <div class="form-group">
+          <label>از تاریخ</label>
+          <div class="date-picker-group">
+            <select id="rStartYear"></select>
+            <select id="rStartMonth"></select>
+            <select id="rStartDay"></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>تا تاریخ</label>
+          <div class="date-picker-group">
+            <select id="rEndYear"></select>
+            <select id="rEndMonth"></select>
+            <select id="rEndDay"></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>نوع گزارش</label>
+          <select id="rKind">
+            <option value="both">جامع</option>
+            <option value="production">فقط تولید (اکسل)</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn" onclick="renderReport()" style="flex:1">مشاهده</button>
+        <button class="btn btn-gold" onclick="printReport()" style="flex:1"><svg class="icon"><use href="#i-print"/></svg> چاپ / PDF</button>
+      </div>
+    </div>
+    <div id="reportOutput"></div>
+  </section>
+
+  <!-- ================= تنظیمات و ابزارها ================= -->
+  <section class="page" id="view-settings">
+    <div class="card">
+      <div class="card-title"><span><svg class="icon"><use href="#i-settings"/></svg> تنظیمات کارگاه</span></div>
+      <form id="settingsForm">
+        <div class="form-row">
+          <div class="form-group"><label>نام کارگاه</label><input id="setWorkshop"></div>
+          <div class="form-group"><label>نام خلیفه (شما)</label><input id="setForeman"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>واحد پول</label>
+            <select id="setCurrency">
+              <option value="افغانی">افغانی</option>
+              <option value="تومان">تومان</option>
+              <option value="روپیه">روپیه</option>
+              <option value="دالر">دالر</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>روز شروع هفته</label>
+            <select id="setWeek">
+              <option value="6">شنبه</option>
+              <option value="0">یکشنبه</option>
+              <option value="1">دوشنبه</option>
+              <option value="2">سه‌شنبه</option>
+              <option value="3">چهارشنبه</option>
+              <option value="4">پنجشنبه</option>
+              <option value="5">جمعه</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-block" style="margin-top:10px">ذخیره تنظیمات</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span><svg class="icon"><use href="#i-upload"/></svg> پشتیبان‌گیری و بازیابی</span></div>
+      <div class="menu-list">
+        <button type="button" class="menu-item" onclick="exportBackup()">
+          <svg class="icon"><use href="#i-download"/></svg> 
+          <span>دانلود فایل پشتیبان (JSON)</span>
+        </button>
+        <label class="menu-item">
+          <svg class="icon"><use href="#i-upload"/></svg> 
+          <span>بازیابی اطلاعات از فایل</span>
+          <input type="file" accept=".json" hidden onchange="importBackup(event)">
+        </label>
+        <button type="button" class="menu-item" style="color:var(--danger)" onclick="confirmDeleteData()">
+          <svg class="icon" style="color:var(--danger)"><use href="#i-trash"/></svg> 
+          <span>پاک‌کردن تمام اطلاعات</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ماشین حساب ================= -->
+  <section class="page" id="view-calc">
+    <div class="card">
+      <div class="card-title"><span><svg class="icon"><use href="#i-calc"/></svg> ماشین‌حساب</span></div>
+      <div class="calc-display" id="calcDisplay">0</div>
+      <div class="calc-grid">
+        <button class="clear" onclick="calcClear()">C</button>
+        <button class="op" onclick="calcBackspace()">⌫</button>
+        <button class="op" onclick="calcOp('÷')">÷</button>
+        <button class="op" onclick="calcOp('×')">×</button>
+        
+        <button onclick="calcNum('7')">7</button>
+        <button onclick="calcNum('8')">8</button>
+        <button onclick="calcNum('9')">9</button>
+        <button class="op" onclick="calcOp('−')">−</button>
+        
+        <button onclick="calcNum('4')">4</button>
+        <button onclick="calcNum('5')">5</button>
+        <button onclick="calcNum('6')">6</button>
+        <button class="op" onclick="calcOp('+')">+</button>
+        
+        <button onclick="calcNum('1')">1</button>
+        <button onclick="calcNum('2')">2</button>
+        <button onclick="calcNum('3')">3</button>
+        <button class="eq" onclick="calcEq()" style="grid-row:span 2;">=</button>
+        
+        <button onclick="calcNum('0')" style="grid-column:span 2;">0</button>
+        <button onclick="calcNum('.')">.</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= راهنمای جامع چرخ ================= -->
+  <section class="page" id="view-machine">
+    <div class="card">
+      <div class="card-title"><span><svg class="icon"><use href="#i-machine"/></svg> راهنمای جامع چرخ‌های خیاطی</span></div>
+      <div id="machine-guide-container">
+        <div class="empty">در حال بارگذاری راهنما...</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= Bottom Navigation ================= -->
+<nav class="bottom-nav no-print">
+  <button onclick="showView('home')" class="active" id="nav-home"><svg class="icon"><use href="#i-home"/></svg> داشبورد</button>
+  <button onclick="showView('production')" id="nav-production"><svg class="icon"><use href="#i-pen"/></svg> تولید</button>
+  <button onclick="showView('students')" id="nav-students"><svg class="icon"><use href="#i-users"/></svg> شاگردان</button>
+  <button onclick="showView('report')" id="nav-report"><svg class="icon"><use href="#i-file"/></svg> گزارش</button>
+  <button onclick="showView('settings')" id="nav-settings"><svg class="icon"><use href="#i-settings"/></svg> تنظیمات</button>
+</nav>
+
+<!-- ================= Modals ================= -->
+<div class="modal-overlay" id="modal-production" onclick="closeModal(event)">
+  <div class="modal-content">
+    <div class="modal-title">
+      <span>ثبت تولید جدید</span>
+      <button class="modal-close" onclick="closeModal(event)"><svg class="icon"><use href="#i-close"/></svg></button>
+    </div>
+    <form id="productionForm">
+      <input type="hidden" id="pId">
+      <div class="form-group">
+        <label>تاریخ (شمسی)</label>
+        <div class="date-picker-group">
+          <select id="pYear"></select>
+          <select id="pMonth"></select>
+          <select id="pDay"></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>روز هفته</label>
+          <select id="pDayName">
+            <option value="شنبه">شنبه</option>
+            <option value="یکشنبه">یکشنبه</option>
+            <option value="دوشنبه">دوشنبه</option>
+            <option value="سه‌شنبه">سه‌شنبه</option>
+            <option value="چهارشنبه">چهارشنبه</option>
+            <option value="پنجشنبه">پنجشنبه</option>
+            <option value="جمعه">جمعه</option>
+          </select>
+        </div>
+        <div class="form-group"><label>شاگرد</label><select id="pStudent"><option value="">بدون شاگرد</option></select></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>نوع لباس</label>
+          <select id="pType" onchange="toggleOtherType()">
+            <option value="چمبر نوجوان">چمبر نوجوان</option>
+            <option value="چمبر مردانه">چمبر مردانه</option>
+            <option value="چمبر زنانه">چمبر زنانه</option>
+            <option value="شلوار">شلوار</option>
+            <option value="پیراهن">پیراهن</option>
+            <option value="کت">کت</option>
+            <option value="سایر">سایر...</option>
+          </select>
+        </div>
+        <div class="form-group" id="pTypeOtherGroup" style="display:none;">
+          <label>نوع دستی</label>
+          <input id="pTypeOther" placeholder="نام مدل">
+        </div>
+        <div class="form-group"><label>رنگ</label><input id="pColor" placeholder="مثلا سیاه"></div>
+      </div>
+      <div class="form-row-3">
+        <div class="form-group">
+          <label>سایز</label>
+          <select id="pSize">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+            <option value="3XL">3XL</option>
+            <option value="4XL">4XL</option>
+            <option value="5XL">5XL</option>
+            <option value="6XL">6XL</option>
+          </select>
+        </div>
+        <div class="form-group"><label>تعداد</label><input id="pQty" type="number" min="1" required value="1"></div>
+        <div class="form-group"><label>قیمت فی دانه</label><input id="pPrice" type="number" min="0" required value="0"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>جمع کل (خودکار)</label><input id="pTotal" readonly style="background:var(--border);font-weight:bold;"></div>
+      </div>
+      <button type="submit" class="btn btn-block">ذخیره تولید</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-student" onclick="closeModal(event)">
+  <div class="modal-content">
+    <div class="modal-title">
+      <span>ثبت شاگرد جدید</span>
+      <button class="modal-close" onclick="closeModal(event)"><svg class="icon"><use href="#i-close"/></svg></button>
+    </div>
+    <form id="studentForm">
+      <input type="hidden" id="stId">
+      <div class="form-group"><label>نام شاگرد</label><input id="stName" required></div>
+      <div class="form-row">
+        <div class="form-group"><label>شماره تماس</label><input id="stPhone" type="tel"></div>
+        <div class="form-group"><label>نسبت (صاحب شماره)</label>
+          <select id="stRelation">
+            <option value="خودش">خودش</option>
+            <option value="پدر">پدر</option>
+            <option value="مادر">مادر</option>
+            <option value="برادر">برادر</option>
+            <option value="خواهر">خواهر</option>
+            <option value="دیگر">دیگر</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>معاش هفته‌وار</label><input id="stWage" type="number" min="0" value="0"></div>
+        <div class="form-group">
+          <label>وضعیت</label>
+          <select id="stStatus"><option>فعال</option><option>غیرفعال</option></select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-block">ذخیره شاگرد</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-loan" onclick="closeModal(event)">
+  <div class="modal-content">
+    <div class="modal-title">
+      <span>ثبت تراکنش شاگرد</span>
+      <button class="modal-close" onclick="closeModal(event)"><svg class="icon"><use href="#i-close"/></svg></button>
+    </div>
+    <form id="loanForm">
+      <div class="form-group">
+        <label>تاریخ (شمسی)</label>
+        <div class="date-picker-group">
+          <select id="lYear"></select>
+          <select id="lMonth"></select>
+          <select id="lDay"></select>
+        </div>
+      </div>
+      <div class="form-group"><label>شاگرد</label><select id="lStudent" required></select></div>
+      <div class="form-group">
+        <label>نوع تراکنش</label>
+        <select id="lType">
+          <option value="loan">قرض جدید (بدهی شاگرد)</option>
+          <option value="advance">پیش‌پرداخت معاش</option>
+          <option value="repay">بازپرداخت قرض</option>
+          <option value="deduction">کسر از معاش</option>
+          <option value="wage">پرداخت معاش هفتگی</option>
+        </select>
+      </div>
+      <div class="form-group"><label>مبلغ</label><input id="lAmount" type="number" min="1" required></div>
+      <button type="submit" class="btn btn-block">ثبت تراکنش</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-debt" onclick="closeModal(event)">
+  <div class="modal-content">
+    <div class="modal-title">
+      <span>ثبت قرض شخصی</span>
+      <button class="modal-close" onclick="closeModal(event)"><svg class="icon"><use href="#i-close"/></svg></button>
+    </div>
+    <form id="debtForm">
+      <div class="form-group">
+        <label>تاریخ (شمسی)</label>
+        <div class="date-picker-group">
+          <select id="dYear"></select>
+          <select id="dMonth"></select>
+          <select id="dDay"></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>نوع قرض</label>
+        <select id="dType">
+          <option value="taken">قرض گرفتم (بدهی من)</option>
+          <option value="given">قرض دادم (طلب من)</option>
+        </select>
+      </div>
+      <div class="form-group"><label>نام شخص</label><input id="dName" required></div>
+      <div class="form-group"><label>مبلغ</label><input id="dAmount" type="number" min="1" required></div>
+      <button type="submit" class="btn btn-block">ذخیره قرض</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-office" onclick="closeModal(event)">
+  <div class="modal-content">
+    <div class="modal-title">
+      <span>ثبت حساب با دفتر</span>
+      <button class="modal-close" onclick="closeModal(event)"><svg class="icon"><use href="#i-close"/></svg></button>
+    </div>
+    <form id="officeForm">
+      <div class="form-group">
+        <label>تاریخ (شمسی)</label>
+        <div class="date-picker-group">
+          <select id="oYear"></select>
+          <select id="oMonth"></select>
+          <select id="oDay"></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>نوع تراکنش</label>
+        <select id="oType">
+          <option value="taken">از دفتر قرض گرفتم (بدهی من)</option>
+          <option value="given">به دفتر دادم (طلب من)</option>
+          <option value="settled">تسویه شد</option>
+        </select>
+      </div>
+      <div class="form-group"><label>مبلغ</label><input id="oAmount" type="number" min="1" required></div>
+      <div class="form-group"><label>بابت / توضیح</label><input id="oReason" placeholder="مثلا: خرید نخ، مساعده و..."></div>
+      <button type="submit" class="btn btn-block">ذخیره</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-sample" onclick="closeModal(event)">
+  <div class="modal-content">
+    <div class="modal-title">
+      <span>ثبت سمپل / خرید</span>
+      <button class="modal-close" onclick="closeModal(event)"><svg class="icon"><use href="#i-close"/></svg></button>
+    </div>
+    <form id="sampleForm">
+      <div class="form-group">
+        <label>تاریخ (شمسی)</label>
+        <div class="date-picker-group">
+          <select id="sYear"></select>
+          <select id="sMonth"></select>
+          <select id="sDay"></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>نوع</label>
+        <select id="sType">
+          <option value="sample">سمپل دوخته شده</option>
+          <option value="expense">خرید وسایل/هزینه</option>
+        </select>
+      </div>
+      <div class="form-group"><label>توضیحات / نام وسیله</label><input id="sName" required placeholder="مثلا مدل جیب کج یا خرید ۲ عدد ماکو"></div>
+      <div class="form-group" id="sAmountGroup" style="display:none;">
+        <label>مبلغ هزینه</label><input id="sAmount" type="number" min="0">
+      </div>
+      <button type="submit" class="btn btn-block">ذخیره</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-confirm" onclick="closeModal(event)">
+  <div class="modal-content" style="text-align:center;">
+    <div style="width:60px;height:60px;background:var(--danger-bg);color:var(--danger);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+      <svg class="icon" style="width:30px;height:30px;"><use href="#i-trash"/></svg>
+    </div>
+    <h3 style="margin-bottom:10px;color:var(--text);">حذف مورد</h3>
+    <p style="margin-bottom:20px;color:var(--muted);font-size:13px;">آیا از حذف این مورد مطمئن هستید؟ این عمل قابل بازگشت نیست.</p>
+    <div style="display:flex;gap:10px;">
+      <button class="btn btn-block" id="btnConfirmYes" style="background:var(--danger);">بله، حذف کن</button>
+      <button class="btn btn-block btn-secondary" onclick="closeModal()">انصراف</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= داده‌های راهنما (به صورت امن) ================= -->
+<script type="application/json" id="guide-data">
+{
+  "machines": [
+    {
+      "name": "چرخ راسته‌دوز صنعتی Bruce R1000 و مدل‌های مکانیکی مشابه",
+      "sections": [
+        {
+          "title": "۱. شناخت قطعات و آماده‌سازی",
+          "content": "<p>قطعات اصلی: سوزن، پایه، دندانۀ کارپیش‌بر، صفحه سوزن، ماکو و قاب ماکو، ماسوره، کشش نخ بالا، فنر جبران، اهرم بالا/پایین‌بر پایه، تنظیم طول بخیه، دوخت معکوس، فلایویل و موتور.</p><p>پیش از کار، مدل دقیق، نوع سوزن و دفترچه دستگاه را بررسی کنید. برق را قطع کنید و فلایویل را فقط در جهت تعیین‌شده روی دستگاه بچرخانید.</p>"
+        },
+        {
+          "title": "۲. نخ‌کشی نخ بالا",
+          "content": "<ol><li>قرقره را روی پایه بگذارید و نخ را از راهنمای بالایی عبور دهید.</li><li>نخ را از میان دیسک‌های کشش، زیر فنر جبران و از راهنماهای میانی عبور دهید.</li><li>نخ را از سوراخ اهرم نخ‌کش عبور دهید، سپس از راهنماهای نزدیک میله سوزن و سوراخ سوزن رد کنید.</li><li>در بسیاری از مدل‌های صنعتی سوزن از چپ به راست نخ می‌شود؛ جهت قطعی را با دفترچه همان مدل تطبیق دهید.</li></ol><p>هنگام نخ‌کشی، پایه را بالا ببرید تا دیسک‌های کشش باز شوند. نخ را با دستگاه خاموش و سوزن در بالاترین نقطه تنظیم کنید.</p>"
+        },
+        {
+          "title": "۳. ماسوره، ماکو و تعادل دوخت",
+          "content": "<p>ماسوره را یکنواخت بپیچید؛ نخ نباید از لبه‌ها بیرون بزند. ماسوره را با جهت چرخش توصیه‌شده داخل قاب بگذارید و نخ را از شیار و زیر فنر قاب عبور دهید.</p><ul><li><b>حلقه نخ زیر پارچه:</b> معمولاً نخ بالا درست نخ‌کشی نشده یا کشش بالا کم است؛ مسیر نخ را از ابتدا بررسی کنید.</li><li><b>حلقه نخ روی پارچه:</b> مسیر نخ ماسوره/ماکو، نصب قاب یا کشش نخ زیر را بررسی کنید.</li><li><b>گره یا کشش نامتعادل:</b> پرز و نخ گیرکرده را پاک کنید و سپس با تکه پارچه آزمایش بگیرید.</li></ul><p>پیچ قاب ماکو را فقط در گام‌های بسیار کوچک تنظیم کنید و پیش از تغییر، وضعیت اولیه را ثبت کنید.</p>"
+        },
+        {
+          "title": "۴. سوزن، کوک و تنظیمات",
+          "content": "<p>سوزن باید تا انتها در گیره قرار گیرد و جهت قسمت صاف آن مطابق دفترچه باشد. سیستم و ضخامت سوزن را بر اساس مدل، نخ و پارچه انتخاب کنید؛ شماره‌های ۱۴ یا ۱۶ فقط نمونه‌اند و برای همه کارها مناسب نیستند.</p><ul><li><b>طول بخیه:</b> با تنظیم‌کننده طول بخیه انتخاب می‌شود؛ بخیه کوتاه برای کار ظریف و بخیه بلندتر برای درزهای عمومی/پارچه ضخیم‌تر، پس از تست.</li><li><b>دوخت معکوس:</b> اهرم را برای چند بخیه به عقب نگه دارید تا ابتدا و انتهای درز محکم شود.</li><li><b>زیگزاگ:</b> راسته‌دوز تک‌سوزن معمولاً زیگزاگ نمی‌دوزد؛ عرض کوک را فقط در دستگاهی تنظیم کنید که واقعاً قابلیت آن را دارد.</li><li><b>فشار پایه:</b> اگر پارچه کشیده یا لایه‌ها جابه‌جا می‌شوند، فشار را مطابق دفترچه و با تست تنظیم کنید.</li></ul>"
+        },
+        {
+          "title": "۵. تنظیم کشش و عیب‌یابی",
+          "content": "<ul><li><b>پاره شدن نخ بالا:</b> نخ‌کشی، سوزن آسیب‌دیده/برعکس، لبه تیز صفحه یا قلاب، نخ بی‌کیفیت و کشش بیش‌ازحد را بررسی کنید.</li><li><b>پرش بخیه:</b> سوزن را عوض کنید، نصب و نوع آن را بررسی کنید؛ اگر ادامه داشت زمان‌بندی قلاب باید تکنسین بررسی کند.</li><li><b>شکستن سوزن:</b> سوزن کج، شماره نامناسب، کشیدن پارچه با دست یا برخورد سوزن با صفحه/پایه را بررسی کنید.</li><li><b>پارچه جلو نمی‌رود:</b> دندانۀ کارپیش‌بر، فشار پایه، طول بخیه و پرز زیر صفحه را بررسی کنید.</li><li><b>صدای غیرعادی یا گیرپاژ:</b> فوراً خاموش کنید؛ با زور فلایویل را نچرخانید.</li></ul><p>تنظیم عددی کشش برای همه پارچه‌ها یکسان نیست؛ روی نمونه هم‌جنس، تعادل گره نخ را در میانه دو لایه تنظیم کنید.</p>"
+        },
+        {
+          "title": "۶. روغن‌کاری و نگهداری",
+          "content": "<p>فقط روغن مخصوص چرخ صنعتی و فقط نقاطی را روغن‌کاری کنید که دفترچه همان مدل مشخص کرده است. برخی مدل‌ها روغن‌کاری دستی و برخی مخزن/سیستم بسته دارند؛ یک دستور را به همه مدل‌ها تعمیم ندهید.</p><ul><li>هر روز برق را قطع و پرز اطراف دندانۀ کارپیش‌بر، صفحه و ماکو را با برس تمیز کنید.</li><li>سطح روغن را در مدل‌های مخزن‌دار طبق نشانگر کنترل کنید.</li><li>روغن را روی تسمه، موتور، سنسور، سیم‌ها و پارچه نریزید.</li><li>پیچ‌ها، سیم برق، پدال، محافظ تسمه و صدای دستگاه را مرتب بررسی کنید.</li></ul>"
+        }
+      ]
+    },
+    {
+      "name": "راسته‌دوز کامپیوتری Jack A4C / A5E و مدل‌های مستقیم‌گرد مشابه",
+      "sections": [
+        {
+          "title": "۱. پنل، روشن‌کردن و تنظیم سرعت",
+          "content": "<p>کلید اصلی برق، پنل، پدال، فلایویل، کلیدهای تنظیم و در برخی مدل‌ها چراغ، بالابر پایه و نخ‌بر خودکار وجود دارد. عملکرد دقیق دکمه‌ها با نسخه پنل و زیرمدل فرق می‌کند؛ علائم روی پنل و دفترچه همان دستگاه ملاک است.</p><p>سرعت را با پارامتر سرعت یا کلیدهای +/− تنظیم کنید، اگر پنل این امکان را دارد. برای شروع آموزش و دوخت ظریف سرعت پایین‌تر انتخاب کنید. عددهای حداکثری تبلیغاتی، سرعت مناسب برای هر کار نیستند.</p>"
+        },
+        {
+          "title": "۲. طول بخیه و عملکردهای خودکار",
+          "content": "<p>طول بخیه از پنل یا تنظیم‌کننده مشخص‌شده تنظیم می‌شود. مقدار قابل تنظیم و روش ورود به منو بین A4C، A5E و نسخه‌های مختلف متفاوت است؛ عدد را از روی دفترچه مدل دقیق انتخاب کنید.</p><ul><li><b>نخ‌بر:</b> در صورت بریدن ناقص، نخ‌کشی، تیغ نخ‌بر و پرز جمع‌شده را بررسی کنید.</li><li><b>بالابر پایه:</b> عملکرد پدال/کلید و سنسور را بدون دست نزدیک مکانیزم آزمایش کنید.</li><li><b>موقعیت سوزن:</b> بالا/پایین بودن توقف را از گزینه پنل تنظیم کنید، اگر مدل پشتیبانی می‌کند.</li></ul>"
+        },
+        {
+          "title": "۳. نخ‌کشی، سوزن و کیفیت بخیه",
+          "content": "<p>مسیر نخ بالا را طبق برچسب/دفترچه نخ‌کشی کنید؛ پایه را بالا ببرید تا دیسک کشش باز باشد. سوزن را تا انتها جا بزنید و سیستم سوزن مناسب مدل را استفاده کنید. نخ، سوزن و پارچه باید با هم سازگار باشند.</p><ul><li>حلقه زیر پارچه: ابتدا مسیر نخ بالا و فنر جبران را بررسی کنید.</li><li>بخیه نامنظم: سوزن، نخ‌کشی، ماسوره و پرز ماکو را بررسی کنید.</li><li>لکه روغن: سطح روغن، درپوش‌ها و دستور روغن‌کاری همان زیرمدل را بررسی کنید؛ دستگاه را بی‌دلیل روغن‌ریزی نکنید.</li></ul>"
+        },
+        {
+          "title": "۴. سیستم روغن و سرویس",
+          "content": "<p>در مدل‌های دارای مخزن/روغن‌کاری کنترل‌شده، سطح روغن و هشدار پنل را مطابق دفترچه بررسی کنید. سیستم روغن‌کاری بسته یا کم‌روغن به معنی بی‌نیازی از بازرسی نیست؛ فقط نقاط مجاز را سرویس کنید.</p><p>روزانه پرزها را پاک کنید، مسیر نخ‌بر و سنسورها را خشک و تمیز نگه دارید و کابل‌ها و اتصال زمین را بررسی کنید. هنگام باز کردن کاور یا کار روی تیغ، برق را جدا کنید.</p>"
+        },
+        {
+          "title": "۵. خطاها و بازنشانی ایمن",
+          "content": "<ul><li><b>کد خطا:</b> کد را یادداشت و به جدول خطاهای دفترچه همان نسخه مراجعه کنید؛ کدها در پنل‌های مختلف یکسان نیستند.</li><li><b>روشن نمی‌شود:</b> برق پریز، کلید، دوشاخه، فیوز و اتصالات را بدون باز کردن بخش برق بررسی کنید.</li><li><b>پدال پاسخ نمی‌دهد:</b> اتصال پدال، گیرکردن مکانیکی و کد خطا را بررسی کنید.</li><li><b>نخ‌بر کار نمی‌کند:</b> گیر نخ و پرز را با برق قطع‌شده پاک کنید؛ تنظیم زمان‌بندی تیغ و قلاب کار تکنسین است.</li></ul><p>پارامترهای سرویس، کالیبراسیون موتور و تنظیمات کارخانه را بدون راهنمای مدل تغییر ندهید.</p>"
+        }
+      ]
+    },
+    {
+      "name": "سردوز صنعتی Jack C4 / C5 و سردوزهای ۳، ۴ و ۵ نخ",
+      "sections": [
+        {
+          "title": "۱. تشخیص مسیر نخ و اجزا",
+          "content": "<p>اجزای اصلی شامل سوزن(ها)، لوپر بالایی و پایینی، راهنماهای نخ، کشش‌های مجزا، دندانۀ پیش‌بر، تیغ ثابت و متحرک، تنظیم عرض برش، طول بخیه و دیفرانسیل است. تعداد نخ و مسیر رنگی نخ‌کشی را از برچسب داخل کاور یا دفترچه مدل دنبال کنید.</p>"
+        },
+        {
+          "title": "۲. نخ‌کشی صحیح",
+          "content": "<ol><li>برق را قطع کنید و پایه را بالا ببرید.</li><li>هر نخ را دقیقاً به ترتیب توصیه‌شده سازنده از راهنماها، دیسک کشش و لوپر مربوط عبور دهید.</li><li>در بسیاری از سردوزها نخ‌کشی لوپرها باید با ترتیب مشخص انجام شود؛ حدس‌زدن یا ردکردن راهنما باعث گره و پاره‌شدن نخ می‌شود.</li><li>نخ سوزن را در آخر از سوراخ سوزن عبور دهید، سپس با چرخاندن دستی فلایویل و قرار دادن پارچه آزمایشی زنجیره تشکیل دهید.</li></ol>"
+        },
+        {
+          "title": "۳. کشش نخ و عرض برش",
+          "content": "<p>کشش هر نخ جداگانه تنظیم می‌شود و عدد ثابت عمومی وجود ندارد. در دوخت ۴ نخ، گره نخ‌ها باید نزدیک لبه پارچه و بین لایه‌ها بنشیند. اگر حلقه‌ها از لبه بیرون می‌زنند، کشش/عرض برش و نخ‌کشی را بررسی کنید.</p><ul><li><b>حلقه بیش از حد بیرون:</b> نخ‌کشی لوپر، کشش‌ها و عرض برش را بررسی کنید.</li><li><b>لبه جمع می‌شود:</b> کشش بیش از حد، دیفرانسیل و فشار پایه را بررسی کنید.</li><li><b>لبه پوشش داده نمی‌شود:</b> عرض برش، محل سوزن و تنظیم لوپر را بررسی کنید.</li></ul><p>تیغ را فقط طبق دستور سازنده جابه‌جا یا تعویض کنید؛ فاصله تیغ و سوزن حساس است.</p>"
+        },
+        {
+          "title": "۴. دیفرانسیل و طول بخیه",
+          "content": "<p>حالت N یا 1 معمولاً نشان‌دهنده تغذیه عادی است، اما علامت‌گذاری با توجه به مدل فرق دارد. نسبت بالاتر از حالت عادی معمولاً برای جمع‌کردن پارچه و نسبت پایین‌تر برای کشیدن/صاف‌کردن پارچه کشی استفاده می‌شود. همیشه روی نمونه آزمایش کنید.</p><p>طول بخیه، عرض برش و فشار پایه را به‌صورت جداگانه تنظیم کنید. پارچه را با دست نکشید یا هل ندهید؛ این کار می‌تواند سوزن را خم کند.</p>"
+        },
+        {
+          "title": "۵. سنسور، نخ‌بر و پایه خودکار",
+          "content": "<p>در نسخه‌های اتوماتیک ممکن است سنسور چشمی، بالابر پایه و زنجیره‌بر وجود داشته باشد. لنز سنسور را با پارچه نرم و خشک تمیز کنید. پارچه تیره، براق یا شفاف ممکن است بر تشخیص سنسور اثر بگذارد؛ محدوده تشخیص را طبق دفترچه تنظیم کنید.</p><p>اگر خودکار عمل نمی‌کند، ابتدا حالت کاری، اتصال سنسور، انسداد نخ و کد خطا را بررسی کنید. سیم‌کشی و تنظیم سنسور داخلی را به تکنسین بسپارید.</p>"
+        },
+        {
+          "title": "۶. نگهداری و عیب‌یابی",
+          "content": "<ul><li><b>شکستن سوزن:</b> نوع/نصب سوزن، برخورد با تیغ و کشیدن پارچه را بررسی کنید.</li><li><b>پاره شدن نخ:</b> مسیر نخ، کشش، کیفیت نخ، سوزن و لبه‌های زبر را بررسی کنید.</li><li><b>زنجیره تشکیل نمی‌شود:</b> ترتیب نخ‌کشی لوپرها و سوزن، نصب سوزن و نخ‌کشی را بررسی کنید.</li><li><b>برش ناصاف:</b> تیغ کند، فاصله تیغ‌ها و تجمع پرز را بررسی کنید.</li></ul><p>روزانه پرزها را با برس پاک کنید و روغن‌کاری را فقط طبق دستور مدل انجام دهید. هنگام دست‌زدن به تیغ یا لوپر، برق را قطع کنید.</p>"
+        }
+      ]
+    },
+    {
+      "name": "چرخ مادگی‌دوز کامپیوتری Juki LBH-1790AN",
+      "sections": [
+        {
+          "title": "۱. کاربرد و آماده‌سازی",
+          "content": "<p>برای دوخت مادگی با الگوهای قابل انتخاب استفاده می‌شود. نوع مادگی، طول، عرض، شکل انتها، تعداد بخیه و روش برش باید با مدل، پارچه و دکمه هماهنگ شود. دفترچه مدل دقیق برای شماره الگوها و محدوده‌ها مرجع اصلی است.</p>"
+        },
+        {
+          "title": "۲. پنل و انتخاب برنامه",
+          "content": "<p>در پنل‌های دارای کلیدهای ITEM SELECTION و DATA CHANGE، گزینه/آیتم را انتخاب و مقدار را با کنترل‌های تغییر داده تنظیم می‌کنند. نام و عملکرد کلیدها در نسخه‌ها ممکن است تفاوت داشته باشد. پیش از دوخت اصلی، برنامه را روی تکه پارچه هم‌جنس آزمایش کنید.</p><p>طول مادگی را فقط در محدوده مجاز برنامه وارد کنید؛ مقدارهای تبلیغاتی یا مربوط به نسخه دیگر را به مدل خود تعمیم ندهید.</p>"
+        },
+        {
+          "title": "۳. سوزن، نخ و کشش",
+          "content": "<p>سوزن سازگار با مدل و پارچه را طبق دفترچه انتخاب کنید. نخ‌کشی نخ بالا، ماسوره و مسیر قلاب را بررسی کنید. اگر دوخت شل، نامتقارن یا پرش‌دار است، ابتدا سوزن، نخ‌کشی و ماسوره را کنترل کنید؛ تنظیم زمان‌بندی قلاب نیازمند تکنسین است.</p>"
+        },
+        {
+          "title": "۴. تیغ و برش مادگی",
+          "content": "<p>اندازه تیغ، شکل برش و ترتیب برش با نوع مادگی و برنامه ارتباط دارد. پیش از شروع، تیغ مناسب و محافظ‌ها را بررسی کنید. هنگام تعویض یا تنظیم تیغ، برق دستگاه را قطع کنید و از ابزار و روش تعیین‌شده در دفترچه استفاده کنید. تیغ ترک‌خورده، کند یا نامتناسب را به کار نبرید.</p>"
+        },
+        {
+          "title": "۵. روغن‌کاری، خطا و نگهداری",
+          "content": "<p>دفترچه LBH-1790AN برای مخزن روغن و روغن‌کاری قلاب دستور مشخص دارد؛ از روغن تعیین‌شده سازنده و سطح MAX استفاده کنید و نگذارید گردوغبار وارد مخزن شود.</p><ul><li><b>مادگی کوتاه/بلند:</b> برنامه، مقدار طول و موقعیت گیره پارچه را بررسی کنید.</li><li><b>برش ناقص:</b> تیغ، مسیر برش و برنامه را بررسی کنید.</li><li><b>توقف یا کد خطا:</b> کد را ثبت و به جدول خطای دفترچه مراجعه کنید؛ تنظیمات سرویس را حدسی تغییر ندهید.</li></ul>"
+        }
+      ]
+    },
+    {
+      "name": "چرخ دکمه‌دوز Jack JK-T1903G و دکمه‌دوزهای کامپیوتری",
+      "sections": [
+        {
+          "title": "۱. انتخاب نوع دکمه و الگو",
+          "content": "<p>الگوهای دکمه ۲ سوراخه، ۴ سوراخه و برخی انواع خاص بسته به مدل و گیره قابل پشتیبانی‌اند. دکمه و گیره را با هم سازگار انتخاب کنید؛ هر دستگاهی برای هر دکمه پایه‌دار یا شکل خاص مناسب نیست.</p><p>در مدل دارای گزینه One Key Button Change، از آن برای تغییر سریع پارامترهای مربوط استفاده کنید، اما قبل از تولید، مسیر دوخت را روی نمونه بررسی کنید.</p>"
+        },
+        {
+          "title": "۲. تنظیم فاصله سوراخ‌ها و بخیه",
+          "content": "<p>انتخاب الگو، فاصله سوراخ‌ها، تعداد بخیه و نوع تثبیت از پنل/پارامترهای مجاز مدل انجام می‌شود. تعداد الگوها و سرعت به نسخه دستگاه وابسته است؛ مقادیر عمومی را بدون دفترچه دقیق قطعی فرض نکنید.</p><p>دکمه باید در گیره ثابت و مرکز سوزن با سوراخ‌ها هم‌راستا باشد. ابتدا دستگاه را با سرعت پایین و نمونه آزمایشی بررسی کنید.</p>"
+        },
+        {
+          "title": "۳. نخ، سوزن و شکستگی",
+          "content": "<ul><li><b>سوزن به دکمه برخورد می‌کند:</b> برق را قطع کنید؛ سایز گیره، برنامه، مرکز دکمه و نصب سوزن را بررسی کنید.</li><li><b>دکمه شل است:</b> تعداد بخیه و الگوی مناسب را طبق مشخصات دکمه تنظیم کنید.</li><li><b>نخ پاره می‌شود:</b> نخ‌کشی، سوزن، کشش و لبه‌های تیز را بررسی کنید.</li><li><b>دکمه می‌چرخد یا می‌لغزد:</b> گیره و فشار نگهدارنده را طبق دفترچه بررسی کنید.</li></ul>"
+        },
+        {
+          "title": "۴. تمیزکاری و سرویس",
+          "content": "<p>پرز و تکه نخ را از گیره و صفحه پاک کنید. روغن‌کاری را مطابق دستور مدل انجام دهید؛ درایو مستقیم یا سیستم کم‌روغن را بی‌دلیل روغن‌کاری نکنید. تیغ نخ‌بر و گیره را با برق قطع‌شده بررسی کنید و تنظیم زمان‌بندی یا سروو را به تکنسین بسپارید.</p>"
+        }
+      ]
+    },
+    {
+      "name": "چرخ پل‌دوز / بست‌دوز Juki LK-1900BN و مدل‌های مشابه",
+      "sections": [
+        {
+          "title": "۱. انتخاب الگو و کاربرد",
+          "content": "<p>برای بست‌زدن نقاط پرفشار مانند سر جیب، محل اتصال کمربند و نقاط تقویتی استفاده می‌شود. شماره الگو، طول و عرض، تراکم و جهت دوخت به برنامه و مدل وابسته است. شماره الگو را از جدول رسمی دستگاه انتخاب کنید.</p>"
+        },
+        {
+          "title": "۲. پنل، اندازه الگو و تست",
+          "content": "<p>در مدل‌های برنامه‌پذیر، الگو و پارامترهای طول/عرض از پنل انتخاب می‌شوند. هرگز شماره کلید یا توالی تنظیم مدل دیگر را فرض نکنید. نمونه را در محل مشابه لباس بدوزید و از کافی بودن استحکام و سالم ماندن پارچه اطمینان بگیرید.</p>"
+        },
+        {
+          "title": "۳. نخ، سوزن و گیره",
+          "content": "<p>نخ و سوزن مناسب جنس پارچه و میزان استحکام انتخاب شود. پارچه باید در گیره صاف و ثابت باشد. اگر بست جابه‌جا یا نامتقارن است، جای‌گذاری پارچه، گیره، برنامه و مرکز سوزن را بررسی کنید.</p>"
+        },
+        {
+          "title": "۴. روغن‌کاری و عیب‌یابی",
+          "content": "<p>مدل‌های Juki ممکن است مخزن روغن و نقاط روغن‌کاری متفاوت داشته باشند؛ سطح و نوع روغن را از دفترچه LK-1900BN دقیق کنترل کنید. در برخی مدل‌های خانواده LK، دستور روغن‌کاری مخزن و علامت سطح اهمیت حیاتی دارد؛ دستگاه را بدون روغن مجاز روشن نکنید.</p><ul><li><b>الگو ناقص:</b> انتخاب الگو، گیره، پارچه و کد خطا را بررسی کنید.</li><li><b>بخیه پرش دارد:</b> سوزن، نخ‌کشی و قلاب بررسی شود.</li><li><b>صدای ضربه:</b> دستگاه را خاموش کنید و برای بررسی زمان‌بندی/قطعات به تکنسین مراجعه کنید.</li></ul>"
+        }
+      ]
+    },
+    {
+      "name": "چرخ زیگزاگ صنعتی",
+      "sections": [
+        {
+          "title": "۱. عرض و طول زیگزاگ",
+          "content": "<p>عرض زیگزاگ مقدار حرکت جانبی سوزن و طول بخیه فاصله بخیه‌ها را تعیین می‌کند. تنظیم‌کننده‌ها در مدل‌های مکانیکی یا پنل در مدل‌های الکترونیکی متفاوت‌اند. سوزن باید در تمام مسیر به پایه و صفحه برخورد نکند؛ ابتدا با فلایویل و برق قطع‌شده حرکت را بررسی کنید.</p>"
+        },
+        {
+          "title": "۲. سوزن، نخ و کاربرد",
+          "content": "<p>برای پارچه کشی، لبه‌دوزی، تزئین یا دوخت‌های خاص به‌کار می‌رود. نوع سوزن، نخ و پایه باید با عرض زیگزاگ و پارچه سازگار باشد. از عرض بیش از ظرفیت دستگاه استفاده نکنید.</p>"
+        },
+        {
+          "title": "۳. عیب‌یابی و نگهداری",
+          "content": "<p>اگر سوزن به صفحه می‌خورد، عرض/موقعیت سوزن، نصب پایه و سوزن را بررسی کنید و دستگاه را روشن نکنید. پرش بخیه، پاره‌شدن نخ و کشیدگی پارچه را با بررسی سوزن، نخ‌کشی، کشش، فشار پایه و کارپیش‌بر رفع کنید. روغن‌کاری فقط مطابق دفترچه.</p>"
+        }
+      ]
+    },
+    {
+      "name": "چرخ دو سوزنه صنعتی",
+      "sections": [
+        {
+          "title": "۱. تنظیم فاصله سوزن‌ها",
+          "content": "<p>فاصله دو ردیف دوخت با مجموعه سوزن‌گیر/گیج دستگاه تعیین می‌شود و همه مدل‌ها امکان تغییر ساده آن را ندارند. برای تغییر فاصله، قطعات سازگار و دستور همان مدل لازم است. پیش از کار، با چرخاندن دستی فلایویل برخورد سوزن‌ها با صفحه و پایه را بررسی کنید.</p>"
+        },
+        {
+          "title": "۲. نخ‌کشی و تعادل دوخت",
+          "content": "<p>هر سوزن مسیر نخ و کشش خود را دارد؛ مسیر نخ لوپر/قلاب یا ماکو بر اساس نوع دستگاه متفاوت است. دو نخ را با هم اشتباه نگیرید و دوخت آزمایشی انجام دهید. تفاوت کشش دو ردیف می‌تواند باعث جمع‌شدگی یا نامتقارن شدن درز شود.</p>"
+        },
+        {
+          "title": "۳. خرابی‌های رایج",
+          "content": "<ul><li><b>یک ردیف جا می‌افتد:</b> سوزن همان سمت، نخ‌کشی و قلاب/ماکو را بررسی کنید.</li><li><b>فاصله ردیف‌ها تغییر می‌کند:</b> گیج، سوزن‌گیر و قطعات شل را بررسی کنید.</li><li><b>سوزن می‌شکند:</b> نصب سوزن، گیج، پایه و کشیدن پارچه را بررسی کنید.</li></ul><p>تنظیم قلاب و زمان‌بندی دو سوزن باید توسط تعمیرکار انجام شود.</p>"
+        }
+      ]
+    },
+    {
+      "name": "چرخ درزپوش / کاوراستیچ صنعتی",
+      "sections": [
+        {
+          "title": "۱. کاربرد و تنظیم پایه",
+          "content": "<p>برای سجاف و درزپوش پارچه‌های کشی به‌کار می‌رود و بسته به مدل دارای دو یا سه سوزن و لوپر زنجیره‌ای است. نوع سوزن، گیج، پایه و صفحه باید با مدل هماهنگ باشد.</p>"
+        },
+        {
+          "title": "۲. نخ‌کشی و کشش",
+          "content": "<p>مسیر هر سوزن و لوپر را طبق نمودار دستگاه دنبال کنید. اگر نخ زیر کار حلقه می‌زند، مسیر نخ لوپر و کشش را بررسی کنید. کشش زیاد سوزن می‌تواند پارچه کشی را جمع کند؛ روی نمونه تنظیم کنید.</p>"
+        },
+        {
+          "title": "۳. دیفرانسیل و عیب‌یابی",
+          "content": "<p>برای موج‌دار شدن سجاف، دیفرانسیل، فشار پایه، کشش نخ و نحوه هدایت پارچه را بررسی کنید. پارچه را نکشید. تمیزکاری و روغن‌کاری طبق دفترچه و با برق قطع‌شده هنگام کار نزدیک سوزن/لوپر انجام شود.</p>"
+        }
+      ]
+    },
+    {
+      "name": "چرخ زنجیره‌دوز صنعتی",
+      "sections": [
+        {
+          "title": "۱. نخ‌کشی و تشکیل زنجیره",
+          "content": "<p>در این دستگاه‌ها تشکیل بخیه به لوپر و نوع تک‌نخ/چندنخ وابسته است. مسیر نخ، موقعیت لوپر و سوزن را از دفترچه همان مدل دنبال کنید؛ روش سردوز یا راسته‌دوز را به آن تعمیم ندهید.</p>"
+        },
+        {
+          "title": "۲. کنترل کیفیت",
+          "content": "<p>زنجیره باید یکنواخت باشد و با کشش معمول پارچه به‌آسانی باز نشود، مگر کاربرد طراحی‌شده دستگاه چنین باشد. اگر بخیه باز می‌شود، نخ‌کشی، نوع نخ، سوزن و تنظیم کشش را بررسی کنید.</p>"
+        },
+        {
+          "title": "۳. نگهداری",
+          "content": "<p>پرزها را پاک کنید، سوزن کج را تعویض کنید و روغن‌کاری را بر اساس دستور سازنده انجام دهید. تنظیم لوپر و زمان‌بندی را به تعمیرکار بسپارید.</p>"
+        }
+      ]
+    },
+    {
+      "name": "چرخ پس‌دوز / مخفی‌دوز صنعتی",
+      "sections": [
+        {
+          "title": "۱. تنظیم عمق گرفتن پارچه",
+          "content": "<p>عمق نفوذ سوزن باید فقط مقدار لازم از لایه داخلی را بگیرد تا دوخت از روی پارچه دیده نشود. پیچ‌ها و اهرم‌های تنظیم در مدل‌ها متفاوت‌اند؛ روی نمونه و با سرعت پایین تنظیم کنید.</p>"
+        },
+        {
+          "title": "۲. سوزن، نخ و هدایت پارچه",
+          "content": "<p>سوزن خم یا نامناسب باعث سوراخ بزرگ و بخیه نامنظم می‌شود. پارچه را با راهنمای دستگاه هدایت کنید و آن را نکشید. برای پارچه‌های نازک، عمق گرفتن را کمتر و با نمونه آزمایش کنید.</p>"
+        },
+        {
+          "title": "۳. عیب‌یابی",
+          "content": "<p>اگر دوخت از رو دیده می‌شود، عمق نفوذ و تنظیم راهنما را بررسی کنید. اگر بخیه باز می‌شود، نخ‌کشی، کشش و نوع نخ را کنترل کنید. هنگام تنظیم سوزن برق را قطع کنید.</p>"
+        }
+      ]
+    },
+    {
+      "name": "چرخ دکمه‌دوز دستی/مکانیکی و چرخ مادگی مکانیکی",
+      "sections": [
+        {
+          "title": "۱. انتخاب الگو و گیره",
+          "content": "<p>در مدل‌های مکانیکی الگو ممکن است با بادامک، صفحه الگو، گیره یا تنظیم مکانیکی تعیین شود. قطعه و الگوی سازگار با مدل را استفاده کنید؛ قطعات ظاهراً مشابه لزوماً قابل تعویض نیستند.</p>"
+        },
+        {
+          "title": "۲. تنظیم و تست",
+          "content": "<p>سوزن، گیره، عرض حرکت و مسیر دوخت را با فلایویل و برق قطع‌شده بررسی کنید. سپس نمونه بدوزید و پیش از تولید از برخورد سوزن با گیره یا تیغ مطمئن شوید.</p>"
+        },
+        {
+          "title": "۳. نگهداری",
+          "content": "<p>پرز و نخ‌های باقی‌مانده را پاک کنید، قطعات ساییده را تعویض کنید و نقاط روغن‌کاری را طبق دفترچه رعایت کنید. فنرها، بادامک‌ها و تیغ‌ها را بدون ابزار مناسب باز نکنید.</p>"
+        }
+      ]
+    },
+    {
+      "name": "قیچی برقی عمودبر پارچه (Straight Knife Cutter)",
+      "sections": [
+        {
+          "title": "۱. کاربرد و انتخاب تیغه",
+          "content": "<p>برای برش لایه‌های پارچه در میز برش استفاده می‌شود. ارتفاع تیغه، توان موتور، شکل کفشک و نوع تیغه باید با ارتفاع لایه و جنس پارچه متناسب باشد. تیغه بلندتر از نیاز، خطر انحراف و آسیب را افزایش می‌دهد.</p>"
+        },
+        {
+          "title": "۲. آماده‌سازی لایه و مسیر برش",
+          "content": "<p>لایه‌ها را صاف و بدون چین پهن کنید، الگو و جهت خواب پارچه را کنترل کنید و فضای حرکت آزاد فراهم کنید. از کفشک/محافظ تیغه و دستگیره‌های دستگاه استفاده کنید؛ دست را هرگز جلوی مسیر تیغه قرار ندهید.</p>"
+        },
+        {
+          "title": "۳. تیزکن تیغه و تعویض",
+          "content": "<p>اگر دستگاه تیزکن داخلی دارد، فقط طبق دفترچه و با محافظ‌های نصب‌شده از آن استفاده کنید. برای تعویض تیغه، برق را از منبع جدا کنید، تیغه را با ابزار تعیین‌شده باز کنید و از دستکش مقاوم مناسب کار برش استفاده کنید. تیغه کند یا ترک‌خورده را ادامه ندهید.</p>"
+        },
+        {
+          "title": "۴. عیب‌یابی و نگهداری",
+          "content": "<ul><li><b>برش کج:</b> سرعت حرکت، تیزی تیغه، ارتفاع لایه و هدایت دستگاه را بررسی کنید.</li><li><b>داغ‌شدن:</b> تیغه کند، فشار بیش از حد یا تهویه مسدود می‌تواند علت باشد؛ خاموش کنید و بررسی کنید.</li><li><b>لرزش/صدای غیرعادی:</b> فوراً خاموش و از سرویس‌کار کمک بگیرید.</li></ul><p>پرزها را از مسیر تهویه پاک کنید و کابل و کلید را بررسی کنید. از برش روی میز ناپایدار یا بدون کفشک استفاده نکنید.</p>"
+        }
+      ]
+    },
+    {
+      "name": "قیچی برقی گردبر پارچه (Round Knife Cutter)",
+      "sections": [
+        {
+          "title": "۱. کاربرد و محدودیت",
+          "content": "<p>برای برش مسیرهای نسبتاً مستقیم و منحنی‌های ملایم، بسته به قطر تیغه و مدل استفاده می‌شود. برای دسته‌های بسیار ضخیم یا منحنی‌های تند ممکن است مناسب نباشد؛ ظرفیت را از پلاک دستگاه بررسی کنید.</p>"
+        },
+        {
+          "title": "۲. تیغه، محافظ و برش",
+          "content": "<p>محافظ تیغه باید نصب باشد. پارچه را صاف کنید و دستگاه را با دو دست/دستگیره طراحی‌شده کنترل کنید. هرگز پارچه را نزدیک تیغه با انگشت نگه ندارید. تیغه گرد را فقط با برق قطع‌شده و ابزار مناسب تعویض کنید.</p>"
+        },
+        {
+          "title": "۳. نگهداری و عیب‌یابی",
+          "content": "<p>برش نامنظم می‌تواند از کندی تیغه، ارتفاع زیاد لایه یا فشار نامناسب باشد. پرزهای موتور و دریچه تهویه را پاک کنید. در صورت جرقه غیرعادی، بوی سوختگی یا خرابی کابل دستگاه را از برق جدا کنید.</p>"
+        }
+      ]
+    },
+    {
+      "name": "دستگاه برش نواری / اره نواری پارچه (Band Knife)",
+      "sections": [
+        {
+          "title": "۱. کاربرد و آماده‌سازی",
+          "content": "<p>برای برش دقیق دسته‌های پارچه روی میز برش، معمولاً با بلوک‌های لایه‌بندی‌شده و راهنما استفاده می‌شود. این دستگاه بسیار خطرناک است و فقط اپراتور آموزش‌دیده باید با آن کار کند.</p>"
+        },
+        {
+          "title": "۲. تیغه و راهنماها",
+          "content": "<p>تیغه باید با دستگاه و جنس کار سازگار باشد و محافظ‌ها/راهنماها درست تنظیم شوند. نصب، کشش، هم‌راستایی و تعویض تیغه باید طبق دفترچه و توسط فرد آموزش‌دیده انجام شود. هیچ محافظی را برای سرعت بیشتر حذف نکنید.</p>"
+        },
+        {
+          "title": "۳. روش ایمن کار",
+          "content": "<p>از هل‌دهنده‌ها و ابزار هدایت قطعه استفاده کنید؛ انگشتان را از خط برش دور نگه دارید. لباس گشاد، آستین آزاد و زیورآلات آویزان ممنوع است. هنگام گیرکردن پارچه، دستگاه را خاموش و تا توقف کامل تیغه صبر کنید.</p>"
+        },
+        {
+          "title": "۴. سرویس و خرابی",
+          "content": "<p>اگر تیغه از مسیر خارج می‌شود، می‌لرزد یا صدای غیرعادی دارد، دستگاه را متوقف کنید. تنظیم کشش تیغه، چرخ‌ها و راهنماها کار سرویس‌کار آموزش‌دیده است. گرد پارچه و پرز را با روش ایمن و برق قطع‌شده پاک کنید.</p>"
+        }
+      ]
+    },
+    {
+      "name": "دستگاه برش پارچه با قالب / پرس برش (Die Cutting Press)",
+      "sections": [
+        {
+          "title": "۱. قالب و تنظیم فشار",
+          "content": "<p>برای برش قطعات تکراری با قالب استفاده می‌شود. قالب باید برای دستگاه و جنس پارچه مناسب باشد. فشار، ارتفاع و کورس دستگاه را فقط در محدوده تعیین‌شده سازنده تنظیم کنید؛ فشار بیش از حد می‌تواند قالب، صفحه یا دستگاه را خراب کند.</p>"
+        },
+        {
+          "title": "۲. ایمنی دست و پدال",
+          "content": "<p>دست‌ها را از منطقه پرس دور نگه دارید و از محافظ‌ها و روش فعال‌سازی دو دستی/ایمنی طراحی‌شده استفاده کنید. هرگز کلید ایمنی را دور نزنید و قالب را هنگام وصل بودن برق جابه‌جا نکنید.</p>"
+        },
+        {
+          "title": "۳. نگهداری و عیب‌یابی",
+          "content": "<p>اگر برش ناقص است، تیزی و ارتفاع قالب، تعداد لایه‌ها، زیرانداز و فشار مجاز را بررسی کنید. نشتی هیدرولیک، صدای غیرعادی یا عمل‌کردن نامنظم پدال نیازمند توقف و سرویس است.</p>"
+        }
+      ]
+    },
+    {
+      "name": "دستگاه پخش‌کن پارچه (Fabric Spreader)",
+      "sections": [
+        {
+          "title": "۱. کنترل کشش و لبه‌ها",
+          "content": "<p>پارچه باید با کشش مناسب و بدون کشیده‌شدن بیش از حد روی میز پخش شود. حالت یک‌طرفه/روبه‌رو، جهت خواب پارچه و علامت‌گذاری لایه‌ها را بر اساس سفارش و نوع پارچه انتخاب کنید.</p>"
+        },
+        {
+          "title": "۲. تنظیمات و خطاها",
+          "content": "<p>تنظیم سرعت، عرض میز، گیره رول و حرکت رفت‌وبرگشت در مدل‌ها متفاوت است. اگر لبه‌ها نامنظم‌اند، هم‌راستایی رول، کشش، راهنماها و سرعت را بررسی کنید. دست و لباس را از غلتک‌ها و زنجیر حرکت دور نگه دارید.</p>"
+        },
+        {
+          "title": "۳. سرویس",
+          "content": "<p>قبل از پاک‌سازی غلتک یا رفع گیر، برق را قطع کنید. کابل، کلید توقف اضطراری، چرخ‌ها و ترمز رول را بررسی کنید. سرویس اجزای انتقال قدرت را به تکنسین بسپارید.</p>"
+        }
+      ]
+    },
+    {
+      "name": "دستگاه لایه‌پهن‌کن و میز برش دستی",
+      "sections": [
+        {
+          "title": "۱. آماده‌سازی میز و الگو",
+          "content": "<p>سطح میز باید صاف، تمیز و بدون پیچ/لبه آسیب‌زننده باشد. جهت تار و پود، خواب پارچه، راه‌راه/چهارخانه بودن و میزان آبرفت را پیش از چیدمان الگو کنترل کنید.</p>"
+        },
+        {
+          "title": "۲. برش با قیچی دستی",
+          "content": "<p>قیچی تیز و مناسب پارچه استفاده کنید؛ پارچه را با دست دور از مسیر تیغه ثابت نگه دارید و قیچی را به سمت بدن حرکت ندهید. قیچی را باز روی میز رها نکنید و هنگام انتقال، تیغه‌ها را بسته نگه دارید.</p>"
+        },
+        {
+          "title": "۳. نگهداری ابزار",
+          "content": "<p>قیچی، خط‌کش، وزنه الگو، گچ، متر و کاتر را در جای مشخص نگه دارید. تیغه‌های کاتر را پس از کار جمع کنید. ابزار کند باعث لغزش و برش ناصاف می‌شود.</p>"
+        }
+      ]
+    },
+    {
+      "name": "اتو بخار صنعتی و میز مکش",
+      "sections": [
+        {
+          "title": "۱. دما و بخار",
+          "content": "<p>دما را بر اساس الیاف و برچسب مراقبت پارچه انتخاب کنید و ابتدا روی تکه اضافی تست بگیرید. پارچه مصنوعی ممکن است با دمای زیاد ذوب یا براق شود. فشار بخار و مکش را مطابق تجهیزات تنظیم کنید.</p>"
+        },
+        {
+          "title": "۲. آب، دیگ بخار و رسوب",
+          "content": "<p>نوع آب، تخلیه رسوب و پرکردن دیگ باید طبق دفترچه دستگاه باشد. پیش از بازکردن درپوش یا سرویس، دستگاه را خاموش کنید و تا افت کامل فشار و سردشدن صبر کنید. درپوش مخزن تحت فشار را داغ باز نکنید.</p>"
+        },
+        {
+          "title": "۳. عیب‌یابی و ایمنی",
+          "content": "<p>بخار ضعیف ممکن است از رسوب، کمبود آب یا نشتی باشد. نشتی بخار، سیم آسیب‌دیده یا صدای غیرعادی باعث توقف فوری کار می‌شود. شلنگ بخار و کف اتو را مرتب بررسی کنید و اتو را روی پایه مخصوص بگذارید.</p>"
+        }
+      ]
+    },
+    {
+      "name": "دستگاه دکمه‌سوراخ‌کن / پانچ و ابزار نصب پرچ و دکمه فشاری",
+      "sections": [
+        {
+          "title": "۱. انتخاب قالب و اندازه",
+          "content": "<p>قالب بالا و پایین باید مخصوص نوع و اندازه دکمه/پرچ باشد. قطعات ناسازگار می‌توانند به لباس و دستگاه صدمه بزنند. قبل از تولید، روی تکه آزمایشی فشار و هم‌راستایی را بررسی کنید.</p>"
+        },
+        {
+          "title": "۲. کار ایمن",
+          "content": "<p>انگشتان را از ناحیه پرس دور نگه دارید و از محافظ و اهرم/پدال سالم استفاده کنید. در دستگاه برقی یا بادی، پیش از تعویض قالب منبع انرژی را قطع کنید.</p>"
+        },
+        {
+          "title": "۳. خرابی‌ها",
+          "content": "<p>اگر دکمه کج یا شل نصب می‌شود، قالب، جهت قطعات، ضخامت پارچه و فشار مجاز را بررسی کنید. صدای غیرعادی یا گیرکردن پرس را با زور رفع نکنید؛ دستگاه را متوقف کنید.</p>"
+        }
+      ]
+    },
+    {
+      "name": "دستگاه گلدوزی کامپیوتری",
+      "sections": [
+        {
+          "title": "۱. فایل طرح و کادر",
+          "content": "<p>طرح باید با فرمت پشتیبانی‌شده دستگاه، محدوده کادر و تعداد سوزن‌ها سازگار باشد. قبل از شروع، طرح را در کادر بررسی کنید تا سوزن یا کادر به بدنه برخورد نکند.</p>"
+        },
+        {
+          "title": "۲. انتخاب سوزن، نخ و تثبیت",
+          "content": "<p>سوزن، نخ بالا، نخ ماسوره و لایه تثبیت را با پارچه هماهنگ کنید. کشش حلقه زیر و رو را روی نمونه تنظیم کنید. پارچه در کادر باید محکم ولی بدون کشش اضافی بسته شود.</p>"
+        },
+        {
+          "title": "۳. نگهداری و خطا",
+          "content": "<p>پرز قلاب و محفظه ماسوره را پاک کنید، روغن‌کاری را طبق دفترچه انجام دهید و از کشیدن کادر هنگام دوخت خودداری کنید. در خطای موتور، سنسور یا موقعیت‌یابی، کد را ثبت کنید و از تغییر پارامترهای سرویس بدون راهنما بپرهیزید.</p>"
+        }
+      ]
+    },
+    {
+      "name": "دستگاه چاپ پارچه / پرس حرارتی انتقال طرح",
+      "sections": [
+        {
+          "title": "۱. دما، زمان و فشار",
+          "content": "<p>دما، زمان و فشار به نوع فیلم/جوهر، پارچه و دستور سازنده ماده مصرفی وابسته است؛ یک عدد ثابت برای همه مواد وجود ندارد. جدول تأمین‌کننده را رعایت کنید و روی تکه نمونه آزمایش کنید.</p>"
+        },
+        {
+          "title": "۲. جای‌گذاری و ایمنی",
+          "content": "<p>سطح پارچه را صاف و خشک کنید و از کاغذ محافظ مناسب استفاده کنید. دست‌ها را از صفحات داغ و نقاط گیرکردن دور نگه دارید؛ هنگام کار تهویه مناسب فراهم باشد.</p>"
+        },
+        {
+          "title": "۳. نگهداری و خرابی",
+          "content": "<p>سطح صفحه را پس از خاموش‌شدن و سردشدن با روش توصیه‌شده تمیز کنید. دمای ناپایدار، سیم آسیب‌دیده یا فشار نامتقارن نیازمند سرویس است. صفحه داغ را لمس نکنید.</p>"
+        }
+      ]
+    },
+    {
+      "name": "راهنمای عمومی ابزار، قطعات مصرفی و ایمنی کارگاه",
+      "sections": [
+        {
+          "title": "۱. سوزن، نخ و ماسوره",
+          "content": "<p>شماره و سیستم سوزن باید با مدل و جنس پارچه سازگار باشد. نخ نازک در سوزن/پارچه نامتناسب می‌تواند پاره شود و نخ ضخیم در سوراخ کوچک اصطکاک ایجاد می‌کند. ماسوره، قاب ماکو، لوپر و گیره را از نظر پرز و آسیب بررسی کنید.</p>"
+        },
+        {
+          "title": "۲. پایه‌ها و متعلقات",
+          "content": "<p>پایه زیپ، پایه لبه‌دوز، پایه نوار، راهنمای لبه، پایه چین‌دوز، گیره دکمه و صفحه سوزن فقط در مدل سازگار استفاده شوند. قبل از روشن‌کردن، سوزن را دستی بچرخانید تا از برخورد قطعات مطمئن شوید.</p>"
+        },
+        {
+          "title": "۳. جدول عیب‌یابی عمومی",
+          "content": "<ul><li><b>بخیه نامتعادل:</b> نخ‌کشی کامل، کشش، سوزن و ماسوره را بررسی کنید.</li><li><b>نخ پاره می‌شود:</b> مسیر نخ، سوزن، کشش، نخ و لبه‌های تیز را بررسی کنید.</li><li><b>پارچه جمع می‌شود:</b> کشش، فشار پایه، طول بخیه و دیفرانسیل را با نمونه تنظیم کنید.</li><li><b>دستگاه گیر می‌کند:</b> خاموش کنید؛ نخ گیرکرده را با برق قطع‌شده آزاد کنید و زور وارد نکنید.</li><li><b>روغن روی پارچه:</b> سطح روغن، درپوش‌ها و نشتی را بررسی کنید؛ قبل از ادامه، علت را رفع کنید.</li></ul>"
+        },
+        {
+          "title": "۴. چک‌لیست روزانه و هفتگی",
+          "content": "<ul><li><b>هر روز:</b> بررسی سیم و دوشاخه، محافظ‌ها، سوزن، پرز، صدای غیرعادی و کیفیت دوخت آزمایشی.</li><li><b>هر هفته یا طبق ساعات کار:</b> بررسی پیچ‌ها، تسمه‌ها، سطح روغن در مدل‌های مخزن‌دار و تمیزکاری نقاط توصیه‌شده.</li><li><b>به‌صورت دوره‌ای:</b> سرویس موتور، زمان‌بندی قلاب/لوپر، تیغ‌ها، سیم‌کشی و سنسورها توسط تکنسین.</li></ul>"
+        },
+        {
+          "title": "۵. قواعد ایمنی ضروری",
+          "content": "<ul><li>هنگام نخ‌کشی، تعویض سوزن/تیغ، پاک‌سازی گیرکردگی یا بازکردن کاور، برق را قطع کنید.</li><li>محافظ تسمه، تیغ، سوزن و کلید توقف اضطراری را حذف یا دور نزنید.</li><li>مو، لباس گشاد و زیورآلات را از قطعات متحرک دور نگه دارید.</li><li>تنظیم زمان‌بندی قلاب، فاصله تیغ و سوزن، سروو و مدار برق را به تعمیرکار واجد صلاحیت بسپارید.</li><li>در بوی سوختگی، جرقه، برق‌گرفتگی، لرزش یا صدای شدید، دستگاه را خاموش و از برق جدا کنید.</li></ul>"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+// ================= Accurate Jalali Date Converter (jalaali-js) =================
+function div(a, b) { return ~~(a / b); }
+function mod(a, b) { return a - ~~(a / b) * b; }
+
+function jalCal(jy, withoutLeap) {
+    var breaks = [-61, 9, 38, 199, 426, 686, 756, 818, 1111, 1181, 1210, 1635, 2060, 2097, 2192, 2262, 2324, 2394, 2456, 3178];
+    var bl = breaks.length, gy = jy + 621, leapJ = -14, jp = breaks[0], jm, jump, leap, leapG, march, n, i;
+    if (jy < jp || jy >= breaks[bl - 1]) throw new Error('Invalid Jalaali year ' + jy);
+    for (i = 1; i < bl; i += 1) {
+        jm = breaks[i]; jump = jm - jp;
+        if (jy < jm) break;
+        leapJ = leapJ + div(jump, 33) * 8 + div(mod(jump, 33), 4);
+        jp = jm;
+    }
+    n = jy - jp;
+    leapJ = leapJ + div(n, 33) * 8 + div(mod(n, 33) + 3, 4);
+    if (mod(jump, 33) === 4 && jump - n === 4) leapJ += 1;
+    leapG = div(gy, 4) - div((div(gy, 100) + 1) * 3, 4) - 150;
+    march = 20 + leapJ - leapG;
+    if (!withoutLeap) {
+        if (jump - n < 6) n = n - jump + div(jump + 4, 33) * 33;
+        leap = mod(mod(n + 1, 33) - 1, 4);
+        if (leap === -1) leap = 4;
+    }
+    return { leap: leap, gy: gy, march: march };
+}
+
+function j2d(jy, jm, jd) {
+    var r = jalCal(jy, true);
+    return g2d(r.gy, 3, r.march) + (jm - 1) * 31 - div(jm, 7) * (jm - 7) + jd - 1;
+}
+
+function d2j(jdn) {
+    var gy = d2g(jdn).gy, jy = gy - 621, r = jalCal(jy, false), jdn1f = g2d(gy, 3, r.march), jd, jm, k;
+    k = jdn - jdn1f;
+    if (k >= 0) {
+        if (k <= 185) { jm = 1 + div(k, 31); jd = mod(k, 31) + 1; return { jy: jy, jm: jm, jd: jd }; }
+        else k -= 186;
+    } else { jy -= 1; k += 179; if (r.leap === 1) k += 1; }
+    jm = 7 + div(k, 30); jd = mod(k, 30) + 1;
+    return { jy: jy, jm: jm, jd: jd };
+}
+
+function g2d(gy, gm, gd) {
+    var d = div((gy + div(gm - 8, 6) + 100100) * 1461, 4) + div(153 * mod(gm + 9, 12) + 2, 5) + gd - 34840408;
+    d = d - div(div(gy + 100100 + div(gm - 8, 6), 100) * 3, 4) + 752;
+    return d;
+}
+
+function d2g(jdn) {
+    var j, i, gd, gm, gy;
+    j = 4 * jdn + 139361631;
+    j = j + div(div(4 * jdn + 183187720, 146097) * 3, 4) * 4 - 3908;
+    i = div(mod(j, 1461), 4) * 5 + 308;
+    gd = div(mod(i, 153), 5) + 1;
+    gm = mod(div(i, 153), 12) + 1;
+    gy = div(j, 1461) - 100100 + div(8 - gm, 6);
+    return { gy: gy, gm: gm, gd: gd };
+}
+
+function toJalaali(gy, gm, gd) { return d2j(g2d(gy, gm, gd)); }
+function toGregorian(jy, jm, jd) { return d2g(j2d(jy, jm, jd)); }
+function isLeapJalaali(jy) { return jalCal(jy, false).leap === 0; }
+
+function toShamsi(isoDate) {
+  if(!isoDate) return '-';
+  const d = new Date(isoDate + 'T12:00:00');
+  const shamsi = toJalaali(d.getFullYear(), d.getMonth()+1, d.getDate());
+  return `${shamsi.jy}/${String(shamsi.jm).padStart(2,'0')}/${String(shamsi.jd).padStart(2,'0')}`;
+}
+
+function getTodayIso() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+// ================= Logic & Data =================
+const KEY = 'khaliifa_workshop_v10';
+const blank = () => ({production:[], students:[], ledger:[], owner:[], debts:[], samples:[], settings:{workshop:'', foreman:'', currency:'افغانی', weekStart:'6'}});
+let db = loadDB();
+let itemToDelete = null;
+
+function loadDB() {
+  try {
+    const d = JSON.parse(localStorage.getItem(KEY) || 'null');
+    return d && typeof d === 'object' ? {...blank(), ...d, settings: {...blank().settings, ...(d.settings||{})}} : blank();
+  } catch(e) { return blank(); }
+}
+function save() { localStorage.setItem(KEY, JSON.stringify(db)); refreshAll(); }
+function id() { return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+function el(x) { return document.getElementById(x); }
+function val(x) { return el(x) ? el(x).value : ''; }
+function setv(x,v) { if(el(x)) el(x).value = v ?? ''; }
+function esc(s) { return String(s??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function money(n) { return (Number(n)||0).toLocaleString('en-US', {maximumFractionDigits:2}) + ' ' + (db.settings.currency||'افغانی'); }
+function sum(a,fn) { return a.reduce((s,x)=>s+(Number(fn(x))||0),0); }
+
+// ================= Init Date Pickers =================
+function initDatePickers() {
+  const d = new Date();
+  const shamsi = toJalaali(d.getFullYear(), d.getMonth()+1, d.getDate());
+  const currentYear = shamsi.jy;
+  
+  let yHtml = '';
+  for(let i = currentYear - 2; i <= currentYear + 2; i++) {
+    yHtml += `<option value="${i}">${i}</option>`;
+  }
+  const mHtml = Array.from({length: 12}, (_, i) => `<option value="${i+1}">${i+1}</option>`).join('');
+  
+  const prefixes = ['p', 'rStart', 'rEnd', 'l', 'd', 'o', 's'];
+  
+  prefixes.forEach(prefix => {
+    if(el(prefix + 'Year')) el(prefix + 'Year').innerHTML = yHtml;
+    if(el(prefix + 'Month')) el(prefix + 'Month').innerHTML = mHtml;
+    
+    el(prefix + 'Month')?.addEventListener('change', () => updateDays(prefix));
+    el(prefix + 'Year')?.addEventListener('change', () => updateDays(prefix));
+  });
+}
+
+function updateDays(prefix) {
+  const y = parseInt(val(prefix+'Year')), m = parseInt(val(prefix+'Month'));
+  if(!y || !m || !el(prefix+'Day')) return;
+  let days = 31; if(m >= 7 && m <= 11) days = 30; if(m === 12) days = isLeapJalaali(y) ? 30 : 29;
+  const currentVal = el(prefix+'Day').value;
+  el(prefix+'Day').innerHTML = Array.from({length: days}, (_, i) => `<option value="${i+1}">${i+1}</option>`).join('');
+  if(currentVal && parseInt(currentVal) <= days) setv(prefix+'Day', currentVal);
+}
+
+function setShamsiPicker(prefix, isoDate) {
+  const d = new Date((isoDate||getTodayIso()) + 'T12:00:00');
+  const shamsi = toJalaali(d.getFullYear(), d.getMonth()+1, d.getDate());
+  
+  if(el(prefix+'Year')) setv(prefix+'Year', shamsi.jy);
+  if(el(prefix+'Month')) setv(prefix+'Month', shamsi.jm);
+  updateDays(prefix);
+  if(el(prefix+'Day')) setv(prefix+'Day', shamsi.jd);
+}
+
+function getIsoFromPicker(prefix) {
+  const y = parseInt(val(prefix+'Year')), m = parseInt(val(prefix+'Month')), d = parseInt(val(prefix+'Day'));
+  if(!y || !m || !d) return getTodayIso();
+  const g = toGregorian(y, m, d);
+  return `${g.gy}-${String(g.gm).padStart(2,'0')}-${String(g.gd).padStart(2,'0')}`;
+}
+
+// ================= Navigation & Modals =================
+function showView(v) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  el('view-'+v).classList.add('active');
+  document.querySelectorAll('.bottom-nav button').forEach(b => b.classList.remove('active'));
+  if(el('nav-'+v)) el('nav-'+v).classList.add('active');
+  
+  if(v === 'home') renderDashboard();
+  if(v === 'production') renderProduction();
+  if(v === 'students') renderStudents();
+  if(v === 'loans') renderLedger();
+  if(v === 'owner') renderOwner();
+  if(v === 'debts') renderDebts();
+  if(v === 'office') renderOffice();
+  if(v === 'samples') renderSamples();
+  if(v === 'settings') loadSettings();
+  if(v === 'machine') loadMachineGuide(); // بارگذاری راهنما
+  if(v === 'report') {
+    const now = new Date();
+    const diff = (now.getDay() + 1) % 7;
+    const start = new Date(now); start.setDate(start.getDate() - diff);
+    const end = new Date(start); end.setDate(end.getDate() + 6);
+    setShamsiPicker('rStart', start.toISOString().split('T')[0]);
+    setShamsiPicker('rEnd', end.toISOString().split('T')[0]);
+    renderReport();
+  }
+  
+  window.scrollTo(0, 0);
+}
+function openModal(id) { 
+  el(id).classList.add('active'); 
+  if(id === 'modal-production') {
+    setShamsiPicker('p', getTodayIso());
+    const d = new Date();
+    const days = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'];
+    setv('pDayName', days[d.getDay()]);
+  }
+  if(id === 'modal-loan') setShamsiPicker('l', getTodayIso());
+  if(id === 'modal-debt') setShamsiPicker('d', getTodayIso());
+  if(id === 'modal-office') setShamsiPicker('o', getTodayIso());
+  if(id === 'modal-sample') setShamsiPicker('s', getTodayIso());
+}
+function closeModal(e) {
+  if(e && e.target !== e.currentTarget) return;
+  document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+  itemToDelete = null;
+}
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  el('themeIcon').innerHTML = `<use href="#i-${isDark ? 'sun' : 'moon'}"/>`;
+  localStorage.setItem('dark_mode', isDark);
+}
+
+// ================= Load Machine Guide (Embedded JSON) =================
+function loadMachineGuide() {
+  const container = document.getElementById('machine-guide-container');
+  if (!container) return;
+  
+  try {
+    const data = JSON.parse(document.getElementById('guide-data').textContent);
+    
+    let html = '';
+    data.machines.forEach(machine => {
+      html += `<h3 style="color: var(--primary); margin-top: 24px; margin-bottom: 12px; border-bottom: 2px dashed var(--border); padding-bottom: 8px;">🪡 ${machine.name}</h3>`;
+      machine.sections.forEach(section => {
+        html += `
+          <details>
+            <summary>${section.title}</summary>
+            <div class="details-content">${section.content}</div>
+          </details>
+        `;
+      });
+    });
+    container.innerHTML = html;
+  } catch (error) {
+    console.error(error);
+    container.innerHTML = '<div class="notice">خطا در خواندن اطلاعات راهنما.</div>';
+  }
+}
+
+// ================= Global Refresh =================
+function refreshAll() {
+  loadSelects();
+  renderDashboard();
+  renderProduction();
+  renderStudents();
+  renderLedger();
+  renderOwner();
+  renderDebts();
+  renderOffice();
+  renderSamples();
+  loadSettings();
+}
+function loadSelects() {
+  const stOpts = '<option value="">انتخاب شاگرد</option>' + db.students.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join('');
+  if(el('pStudent')) el('pStudent').innerHTML = '<option value="">بدون شاگرد</option>' + db.students.map(s => `<option value="${s.id}">${esc(s.name)}</option>`).join('');
+  if(el('lStudent')) el('lStudent').innerHTML = stOpts;
+}
+function studentName(i) { return db.students.find(s => s.id === i)?.name || ''; }
+
+// ================= Render Lists =================
+function listBuilder(rows) {
+  if(!rows.length) return '<div class="empty">موردی ثبت نشده است.</div>';
+  return rows.join('');
+}
+
+// Dashboard
+function renderDashboard() {
+  const ps = db.production;
+  
+  const totalQty = sum(ps, p=>p.qty);
+  const totalPrice = sum(ps, p=>p.qty*p.price);
+  
+  el('sQty').textContent = totalQty.toLocaleString('en-US');
+  el('sProduction').textContent = money(totalPrice);
+  
+  const totalLoans = sum(db.ledger.filter(x=>['loan','advance'].includes(x.type)),x=>x.amount) - sum(db.ledger.filter(x=>['repay','deduction'].includes(x.type)),x=>x.amount);
+  el('sLoans').textContent = money(totalLoans);
+  
+  const totalOffice = sum(db.owner.filter(x=>x.type==='taken'),x=>x.amount) - sum(db.owner.filter(x=>x.type==='given' || x.type==='settled'),x=>x.amount);
+  el('sOwner').textContent = money(totalOffice);
+  
+  el('brandTitle').textContent = db.settings.workshop || 'دفتر جامع کارگاه';
+  
+  const rows = ps.slice().sort((x,y)=>y.date.localeCompare(x.date)).slice(0,5).map(p => `
+    <div class="list-item">
+      <div class="list-item-header">
+        <span class="list-item-title">${esc(p.type)}</span>
+        <span class="list-item-date">${toShamsi(p.date)} (${esc(p.dayName||'')})</span>
+      </div>
+      <div class="list-item-body">
+        <span>${p.qty} عدد ${esc(p.size||'')} ${esc(p.color||'')}</span>
+        <b>${money(p.qty*p.price)}</b>
+      </div>
+    </div>
+  `);
+  el('recentProduction').innerHTML = listBuilder(rows);
+}
+
+// Production List
+function renderProduction() {
+  const rows = db.production.slice().sort((x,y)=>y.date.localeCompare(x.date)).map(p => `
+    <div class="list-item">
+      <div class="list-item-header">
+        <span class="list-item-title">${esc(p.type)}</span>
+        <span class="list-item-date">${toShamsi(p.date)} (${esc(p.dayName||'')})</span>
+      </div>
+      <div class="list-item-body">
+        <span>${esc(studentName(p.studentId)||'بدون شاگرد')}</span>
+        <span>${p.qty} عدد</span>
+        <b>${money(p.qty*p.price)}</b>
+      </div>
+      <div class="list-item-actions">
+        <button class="btn btn-sm btn-secondary" onclick="editProduction('${p.id}')"><svg class="icon"><use href="#i-edit"/></svg> ویرایش</button>
+        <button class="btn btn-sm btn-danger" onclick="askDelete('production','${p.id}')"><svg class="icon"><use href="#i-trash"/></svg> حذف</button>
+      </div>
+    </div>
+  `);
+  el('productionTable').innerHTML = listBuilder(rows);
+}
+function toggleOtherType() {
+  const val = el('pType').value;
+  el('pTypeOtherGroup').style.display = val === 'سایر' ? 'block' : 'none';
+  if(val === 'سایر') el('pTypeOther').required = true;
+  else el('pTypeOther').required = false;
+}
+function editProduction(i) {
+  const p = db.production.find(x=>x.id===i); if(!p) return;
+  openModal('modal-production');
+  setShamsiPicker('p', p.date);
+  
+  setv('pId', p.id);
+  setv('pStudent', p.studentId);
+  
+  if(['چمبر نوجوان', 'چمبر مردانه', 'چمبر زنانه', 'شلوار', 'پیراهن', 'کت'].includes(p.type)) {
+    setv('pType', p.type);
+    toggleOtherType();
+  } else {
+    setv('pType', 'سایر');
+    toggleOtherType();
+    setv('pTypeOther', p.type);
+  }
+  
+  setv('pColor', p.color);
+  setv('pSize', p.size);
+  setv('pQty', p.qty);
+  setv('pPrice', p.price);
+  setv('pDayName', p.dayName || 'شنبه');
+  calcP();
+}
+el('productionForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const isoDate = getIsoFromPicker('p');
+  
+  let finalType = val('pType');
+  if(finalType === 'سایر') finalType = val('pTypeOther');
+
+  const obj = { 
+    id: val('pId')||id(), 
+    date: isoDate, 
+    dayName: val('pDayName'),
+    studentId: val('pStudent'), 
+    type: finalType, 
+    color: val('pColor'), 
+    size: val('pSize'), 
+    qty: Number(val('pQty')), 
+    price: Number(val('pPrice'))
+  };
+  if(!obj.qty || obj.qty < 1) return alert('تعداد نامعتبر است');
+  const i = db.production.findIndex(x => x.id === obj.id);
+  if(i >= 0) db.production[i] = obj; else db.production.push(obj);
+  save(); closeModal(); el('productionForm').reset(); setv('pId','');
+});
+function calcP() { setv('pTotal', ((Number(val('pQty'))||0) * (Number(val('pPrice'))||0)).toLocaleString('en-US')); }
+el('pQty')?.addEventListener('input', calcP);
+el('pPrice')?.addEventListener('input', calcP);
+
+// Students
+function renderStudents() {
+  const rows = db.students.map(s => {
+    const bal = sum(db.ledger.filter(x=>x.studentId===s.id && ['loan','advance'].includes(x.type)),x=>x.amount) - sum(db.ledger.filter(x=>x.studentId===s.id && ['repay','deduction'].includes(x.type)),x=>x.amount);
+    return `
+      <div class="list-item">
+        <div class="list-item-header">
+          <div>
+            <span class="list-item-title">${esc(s.name)}</span>
+            <div style="font-size:11px; color:var(--muted); margin-top:2px;">${esc(s.relation||'')} ${s.phone ? `(${esc(s.phone)})` : ''}</div>
+          </div>
+          <div style="display:flex;gap:4px;">
+            ${s.phone ? `<a href="tel:${s.phone}" class="btn-icon call" title="تماس"><svg class="icon"><use href="#i-phone"/></svg></a>` : ''}
+            ${s.phone ? `<a href="https://wa.me/${s.phone.replace(/^0/, '93')}" target="_blank" class="btn-icon wa" title="واتساپ"><svg class="icon"><use href="#i-whatsapp"/></svg></a>` : ''}
+          </div>
+        </div>
+        <div class="list-item-body">
+          <span>معاش: ${money(s.wage)}</span>
+          <span style="color:${bal > 0 ? 'var(--danger)' : 'var(--success)'}">بدهی: <b>${money(bal)}</b></span>
+        </div>
+        <div class="list-item-actions" style="justify-content:space-between;">
+          <button class="btn btn-sm btn-secondary" onclick="editStudent('${s.id}')"><svg class="icon"><use href="#i-edit"/></svg> ویرایش</button>
+          <button class="btn btn-sm btn-danger" onclick="askDelete('students','${s.id}')"><svg class="icon"><use href="#i-trash"/></svg> حذف</button>
+        </div>
+      </div>
+    `;
+  });
+  el('studentTable').innerHTML = listBuilder(rows);
+}
+function editStudent(i) {
+  const s = db.students.find(x=>x.id===i); if(!s) return;
+  openModal('modal-student');
+  for(const [k,v] of Object.entries({stId:s.id, stName:s.name, stPhone:s.phone, stRelation:s.relation, stWage:s.wage, stStatus:s.status})) setv(k,v);
+}
+el('studentForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const obj = { 
+    id: val('stId')||id(), 
+    name: val('stName'), 
+    phone: val('stPhone'), 
+    relation: val('stRelation'),
+    wage: Number(val('stWage')), 
+    status: val('stStatus')
+  };
+  const i = db.students.findIndex(x => x.id === obj.id);
+  if(i >= 0) db.students[i] = obj; else db.students.push(obj);
+  save(); closeModal(); el('studentForm').reset(); setv('stId','');
+});
+
+// Ledger
+function renderLedger() {
+  const lNames = {loan:'قرض', advance:'پیش‌پرداخت', repay:'بازپرداخت', deduction:'کسر از معاش', wage:'پرداخت معاش'};
+  const rows = db.ledger.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x => `
+    <div class="list-item">
+      <div class="list-item-header">
+        <span class="list-item-title">${esc(studentName(x.studentId))}</span>
+        <span class="list-item-date">${toShamsi(x.date)}</span>
+      </div>
+      <div class="list-item-body">
+        <span>${esc(lNames[x.type]||x.type)}</span>
+        <b>${money(x.amount)}</b>
+      </div>
+      <div class="list-item-actions">
+        <button class="btn btn-sm btn-danger" onclick="askDelete('ledger','${x.id}')"><svg class="icon"><use href="#i-trash"/></svg> حذف</button>
+      </div>
+    </div>
+  `);
+  el('loanTable').innerHTML = listBuilder(rows);
+}
+el('loanForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const isoDate = getIsoFromPicker('l');
+  db.ledger.push({ id: id(), date: isoDate, studentId: val('lStudent'), type: val('lType'), amount: Number(val('lAmount')) });
+  save(); closeModal(); el('loanForm').reset();
+});
+
+// Debts
+function renderDebts() {
+  const rows = db.debts.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x => `
+    <div class="list-item">
+      <div class="list-item-header">
+        <span class="list-item-title">${esc(x.name)}</span>
+        <span class="list-item-date">${toShamsi(x.date)}</span>
+      </div>
+      <div class="list-item-body">
+        <span style="color:${x.type==='taken'?'var(--danger)':'var(--success)'}">${x.type==='taken'?'قرض گرفتم':'قرض دادم'}</span>
+        <b>${money(x.amount)}</b>
+      </div>
+      <div class="list-item-actions">
+        <button class="btn btn-sm btn-danger" onclick="askDelete('debts','${x.id}')"><svg class="icon"><use href="#i-trash"/></svg> حذف</button>
+      </div>
+    </div>
+  `);
+  el('debtTable').innerHTML = listBuilder(rows);
+}
+el('debtForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const isoDate = getIsoFromPicker('d');
+  db.debts.push({ id: id(), date: isoDate, type: val('dType'), name: val('dName'), amount: Number(val('dAmount')) });
+  save(); closeModal(); el('debtForm').reset();
+});
+
+// Office Ledger
+function renderOffice() {
+  const oNames = {taken:'از دفتر قرض گرفتم', given:'به دفتر دادم', settled:'تسویه'};
+  const rows = db.owner.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x => `
+    <div class="list-item">
+      <div class="list-item-header">
+        <span class="list-item-title" style="color:${x.type==='taken'?'var(--danger)':x.type==='given'?'var(--success)':'var(--text)'}">${esc(oNames[x.type]||x.type)}</span>
+        <span class="list-item-date">${toShamsi(x.date)}</span>
+      </div>
+      <div class="list-item-body">
+        <span>${esc(x.reason||'-')}</span>
+        <b>${money(x.amount)}</b>
+      </div>
+      <div class="list-item-actions">
+        <button class="btn btn-sm btn-danger" onclick="askDelete('owner','${x.id}')"><svg class="icon"><use href="#i-trash"/></svg> حذف</button>
+      </div>
+    </div>
+  `);
+  el('officeTable').innerHTML = listBuilder(rows);
+}
+el('officeForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const isoDate = getIsoFromPicker('o');
+  db.owner.push({ id: id(), date: isoDate, type: val('oType'), amount: Number(val('oAmount')), reason: val('oReason') });
+  save(); closeModal(); el('officeForm').reset();
+});
+
+// Samples
+function renderSamples() {
+  const rows = db.samples.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x => `
+    <div class="list-item">
+      <div class="list-item-header">
+        <span class="list-item-title" style="color:${x.type==='sample'?'var(--primary)':'var(--danger)'}">${esc(x.name)}</span>
+        <span class="list-item-date">${toShamsi(x.date)}</span>
+      </div>
+      <div class="list-item-body">
+        <span>${x.type==='sample'?'سمپل':'خرید/هزینه'}</span>
+        ${x.amount ? `<b>${money(x.amount)}</b>` : '<span></span>'}
+      </div>
+      <div class="list-item-actions">
+        <button class="btn btn-sm btn-danger" onclick="askDelete('samples','${x.id}')"><svg class="icon"><use href="#i-trash"/></svg> حذف</button>
+      </div>
+    </div>
+  `);
+  el('sampleTable').innerHTML = listBuilder(rows);
+}
+el('sampleForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const isoDate = getIsoFromPicker('s');
+  db.samples.push({ id: id(), date: isoDate, type: val('sType'), name: val('sName'), amount: val('sAmount') ? Number(val('sAmount')) : 0 });
+  save(); closeModal(); el('sampleForm').reset();
+});
+el('sType')?.addEventListener('change', () => {
+  el('sAmountGroup').style.display = el('sType').value === 'expense' ? 'block' : 'none';
+});
+
+// Custom Delete Modal
+function askDelete(group, i) {
+  itemToDelete = { group, i };
+  openModal('modal-confirm');
+}
+el('btnConfirmYes')?.addEventListener('click', () => {
+  if(itemToDelete) {
+    db[itemToDelete.group] = db[itemToDelete.group].filter(x => x.id !== itemToDelete.i);
+    save();
+    closeModal();
+  }
+});
+function confirmDeleteData() {
+  itemToDelete = 'ALL';
+  openModal('modal-confirm');
+  el('btnConfirmYes').onclick = () => {
+    db = blank(); save(); closeModal(); alert('اطلاعات پاک شد');
+    el('btnConfirmYes').onclick = null; // reset
+  };
+}
+
+// Settings
+function loadSettings() {
+  setv('setWorkshop', db.settings.workshop);
+  setv('setForeman', db.settings.foreman);
+  setv('setCurrency', db.settings.currency);
+  setv('setWeek', db.settings.weekStart);
+}
+el('settingsForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  db.settings = { workshop: val('setWorkshop'), foreman: val('setForeman'), currency: val('setCurrency'), weekStart: val('setWeek') };
+  save(); alert('ذخیره شد');
+});
+
+// ================= Report (Excel Style) =================
+function renderReport() {
+  const a = getIsoFromPicker('rStart');
+  const b = getIsoFromPicker('rEnd');
+  
+  if(a > b) return el('reportOutput').innerHTML = '<div class="notice">تاریخ شروع نباید بعد از پایان باشد.</div>';
+  
+  const ps = db.production.filter(p => p.date >= a && p.date <= b).sort((x,y)=>x.date.localeCompare(y.date));
+  const totalQty = sum(ps, p=>p.qty);
+  const totalProdPrice = sum(ps, p=>p.qty*p.price);
+  
+  let html = `
+    <div class="report-header" style="display:none;">
+      <h1>${esc(db.settings.workshop||'کارگاه خیاطی')}</h1>
+      <p>گزارش از ${toShamsi(a)} تا ${toShamsi(b)}</p>
+    </div>
+    <div class="card">
+      <h2 style="margin-bottom:16px;text-align:center;">خلاصه گزارش</h2>
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-label">تعداد کل تولید</div><div class="stat-val">${totalQty}</div></div>
+        <div class="stat-box"><div class="stat-label">مبلغ کل تولید</div><div class="stat-val">${money(totalProdPrice)}</div></div>
+      </div>
+    </div>
+  `;
+  
+  if(val('rKind') !== 'finance') {
+    let prodRows = ps.map(p=>`
+      <tr>
+        <td>${toShamsi(p.date)}</td>
+        <td>${esc(p.dayName||'-')}</td>
+        <td>${esc(p.size||'-')}</td>
+        <td>${esc(p.color||'-')}</td>
+        <td>${esc(p.type||'-')}</td>
+        <td>${p.qty}</td>
+        <td>${p.price}</td>
+        <td><b>${p.qty*p.price}</b></td>
+      </tr>
+    `).join('');
+    
+    html += `
+      <div class="card">
+        <h2>۱. دفتر تولید (گزارش اکسل)</h2>
+        <div class="report-table-wrapper">
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th>تاریخ</th>
+                <th>روز</th>
+                <th>سایز</th>
+                <th>رنگ</th>
+                <th>نوع</th>
+                <th>تعداد</th>
+                <th>قیمت</th>
+                <th>جمع کل</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${prodRows || '<tr><td colspan="8" class="empty">موردی ثبت نشده است</td></tr>'}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="5" style="text-align:left; padding-right:15px;">جمع کل</td>
+                <td>${totalQty}</td>
+                <td>-</td>
+                <td>${totalProdPrice}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    `;
+  }
+  
+  html += `<div class="card" style="margin-top:20px;"><h2>امضاها</h2><div style="display:flex;justify-content:space-between;margin-top:30px;"><span>امضای خلیفه: ______________</span><span>امضای صاحب‌کار: ______________</span></div></div>`;
+  
+  el('reportOutput').innerHTML = html;
+}
+function printReport() { 
+  renderReport();
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('printing'));
+  el('view-report').classList.add('printing');
+  const style = document.createElement('style');
+  style.innerHTML = `@media print { .report-header { display: block !important; } }`;
+  document.head.appendChild(style);
+  window.print(); 
+  setTimeout(()=>{ el('view-report').classList.remove('printing'); style.remove(); }, 500);
+}
+
+// ================= Calculator =================
+let calcState = { display: '0', prev: null, op: null, waiting: false };
+function renderCalc() { el('calcDisplay').textContent = calcState.display; }
+function calcNum(n) {
+  if (calcState.waiting) { calcState.display = n; calcState.waiting = false; }
+  else { calcState.display = calcState.display === '0' && n !== '.' ? n : calcState.display + n; }
+  renderCalc();
+}
+function calcOp(op) {
+  if (calcState.op && !calcState.waiting) calcEq();
+  calcState.prev = parseFloat(calcState.display);
+  calcState.op = op;
+  calcState.waiting = true;
+}
+function calcEq() {
+  if (!calcState.op || calcState.prev === null) return;
+  const current = parseFloat(calcState.display);
+  let res = 0;
+  if (calcState.op === '+') res = calcState.prev + current;
+  if (calcState.op === '−') res = calcState.prev - current;
+  if (calcState.op === '×') res = calcState.prev * current;
+  if (calcState.op === '÷') res = current === 0 ? 0 : calcState.prev / current;
+  calcState.display = String(Math.round(res * 10000) / 10000);
+  calcState.op = null; calcState.prev = null; calcState.waiting = true;
+  renderCalc();
+}
+function calcClear() { calcState = { display: '0', prev: null, op: null, waiting: false }; renderCalc(); }
+function calcBackspace() {
+  if (calcState.waiting) return;
+  if (calcState.display.length === 1) calcState.display = '0';
+  else calcState.display = calcState.display.slice(0, -1);
+  renderCalc();
+}
+
+// ================= Backup & Export =================
+function exportBackup() {
+  const blob = new Blob([JSON.stringify(db,null,2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `workshop-backup-${toShamsi(getTodayIso()).replace(/\//g,'-')}.json`; a.click();
+}
+function importBackup(e) {
+  const f = e.target.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const d = JSON.parse(r.result);
+      if(confirm('اطلاعات فعلی جایگزین شود؟')) {
+        db = {...blank(), ...d, settings: {...blank().settings, ...(d.settings||{})}};
+        save(); alert('بازیابی موفق');
+      }
+    } catch { alert('فایل نامعتبر است'); }
+    e.target.value = '';
+  };
+  r.readAsText(f);
+}
+
+// Init
+window.onload = () => {
+  if(localStorage.getItem('dark_mode') === 'true') {
+    document.body.classList.add('dark');
+    el('themeIcon').innerHTML = '<use href="#i-sun"/>';
+  }
+  initDatePickers();
+  refreshAll();
+  loadMachineGuide(); // بارگذاری راهنما در لحظه باز شدن برنامه
+};
+</script>
+<script>
+// ثبت Service Worker برای کارکرد آفلاین
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('Service Worker Registered'))
+      .catch(err => console.log('Service Worker Error', err));
+  });
+}
+</script>
+</body>
+</html>
